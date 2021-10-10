@@ -1,10 +1,16 @@
-import CardProps from './types/types';
-
 export {
   cards,
   amount
 };
 
+interface CardProps {
+  id: number,
+  isPremium: boolean,
+  src: string,
+  price: number,
+  type: string,
+  cardName: string,
+}
 const amount = 999;
 
 const cards: CardProps[] = [

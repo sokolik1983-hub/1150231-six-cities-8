@@ -1,5 +1,11 @@
-import CardProps from '../../types/types';
 
+interface CardProps {
+  isPremium: boolean,
+  src: string,
+  price: number,
+  type: string,
+  cardName: string,
+}
 function Card({src, type, price, cardName, isPremium}: CardProps): JSX.Element {
   return (
     <article className='cities__place-card place-card'>
