@@ -5,4 +5,4 @@ export default interface CardProps {
   price: number,
   type: string,
   cardName: string,
-};
+}
