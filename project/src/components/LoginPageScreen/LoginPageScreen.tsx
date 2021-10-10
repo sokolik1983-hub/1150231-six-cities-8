@@ -1,4 +1,4 @@
-function Login(): JSX.Element {
+function LoginPageScreen(): JSX.Element {
   return (
     <>
       <div style={{display: 'none'}}>
@@ -55,4 +55,4 @@ function Login(): JSX.Element {
       </div>
     </>);
 }
-export default Login;
+export default LoginPageScreen;

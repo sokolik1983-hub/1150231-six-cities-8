@@ -1,9 +1,8 @@
-import Main from '../Main/main';
+import MainPageScreen from '../MainPageScreen/MainPageScreen';
+import AllObjectsAmount from '../../types/types';
 
-type num = { amount: number };
-
-function App({amount}: num ): JSX.Element {
-  return <Main amount={amount} />;
+function App({allObjects} : AllObjectsAmount ): JSX.Element {
+  return <MainPageScreen allObjects={allObjects} />;
 }
 
 export default App;

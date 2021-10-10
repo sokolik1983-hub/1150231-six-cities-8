@@ -1,16 +1,12 @@
+import CardProps from '../../types/forCards';
 
-interface CardProps {
-  id: number,
-  isPremium: boolean,
-  src: string,
-  price: number,
-  type: string,
-  cardName: string,
-}
-function Card({id, src, type, price, cardName, isPremium}: CardProps): JSX.Element {
+function Card(props : CardProps): JSX.Element {
+
+  const {id , src, type, price, title, isPremium} = props;
+
   return (
     <article className='cities__place-card place-card'>
-      {isPremium ? <div className='place-card__mark'><span>Premium</span></div> : ''}
+      {Boolean(isPremium) && <div className='place-card__mark'><span>Premium</span></div>}
       <div className='cities__image-wrapper place-card__image-wrapper'>
         <a href='/#'><img className='place-card__image' src={src} width='260' height='200' alt='' /></a>
       </div>
@@ -24,7 +20,7 @@ function Card({id, src, type, price, cardName, isPremium}: CardProps): JSX.Eleme
             <svg className='place-card__bookmark-icon' width='18' height='19'>
               <use xlinkHref='#icon-bookmark'></use>
             </svg>
-            <span className='visually-hidden'>To bookmarks</span>
+            <span className='visually-hidden'>To bookmarks{id}</span>
           </button>
         </div>
         <div className='place-card__rating rating'>
@@ -34,7 +30,7 @@ function Card({id, src, type, price, cardName, isPremium}: CardProps): JSX.Eleme
           </div>
         </div>
         <h2 className='place-card__name'>
-          <a href='/#'>{cardName}</a>
+          <a href='/#'>{title}</a>
         </h2>
         <p className='place-card__type'>{type}</p>
       </div>

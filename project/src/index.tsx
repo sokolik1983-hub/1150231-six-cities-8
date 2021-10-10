@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/app/app';
-import {amount} from './config';
+import allObjects from './configs/allObjects';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App amount={amount} />
+    <App allObjects={allObjects} />
   </React.StrictMode>,
   document.getElementById('root'));
