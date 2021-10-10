@@ -1,12 +1,13 @@
 
 interface CardProps {
+  id: number,
   isPremium: boolean,
   src: string,
   price: number,
   type: string,
   cardName: string,
 }
-function Card({src, type, price, cardName, isPremium}: CardProps): JSX.Element {
+function Card({id, src, type, price, cardName, isPremium}: CardProps): JSX.Element {
   return (
     <article className='cities__place-card place-card'>
       {isPremium ? <div className='place-card__mark'><span>Premium</span></div> : ''}
