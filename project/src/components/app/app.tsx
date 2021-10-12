@@ -1,16 +1,12 @@
-import MainPageScreen from '../MainPageScreen/MainPageScreen';
-import LoginPageScreen from '../LoginPageScreen/LoginPageScreen';
-import FavoritesPageScreen from '../FavoritesPageScreen/FavoritesPageScreen';
-import RoomPageScreen from '../RoomPageScreen/RoomPageScreen';
-import NotFoundPageScreen from '../NotFoundPageScreen/NotFoundPageScreen';
+import {MainPageScreen, LoginPageScreen, PrivateRoute, FavoritesPageScreen, RoomPageScreen, NotFoundPageScreen} from 'components/config';
+import cards from 'fixtures/cards';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/' exact component={ MainPageScreen } />
+        <Route path='/' exact render={() => <MainPageScreen items={cards} />} />
         <Route path='/login' exact component={ LoginPageScreen } />
         <PrivateRoute authorizationStatus={false} path='/favorites' exact component={ FavoritesPageScreen } />
         <Route path='/offer/:id' exact component={ RoomPageScreen } />

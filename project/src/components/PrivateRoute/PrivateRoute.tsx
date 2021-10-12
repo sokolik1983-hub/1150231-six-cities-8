@@ -3,21 +3,17 @@ import {RouteProps} from 'react-router-dom';
 
 type PrivateRouteProps = RouteProps & {
   // render: () => JSX.Element;
-  authorizationStatus: boolean;
+  authorizationStatus: boolean,
+  path: string,
+  exact: boolean
 }
 
 function PrivateRoute(props: PrivateRouteProps): JSX.Element {
 
-  const {exact, path, authorizationStatus, component, children} = props;
+  const {exact, path, authorizationStatus, component} = props;
 
-  return (
-    <Route exact={exact} path={path} component={component}>
-      {authorizationStatus  ? (
-        children
-      ) : (
-        <Redirect to='/Login' />
-      )}
-    </Route>);
+  return (<div>{authorizationStatus ? <Route exact={exact} path={path} component={component} /> : <Redirect to='/Login'/>}</div>
+  );
 }
 
 export default PrivateRoute;

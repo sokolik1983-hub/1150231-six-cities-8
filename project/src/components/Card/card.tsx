@@ -1,4 +1,4 @@
-import CardProps from '../../types/forCards';
+import CardProps from 'types/forCards';
 
 function Card(props : CardProps): JSX.Element {
 

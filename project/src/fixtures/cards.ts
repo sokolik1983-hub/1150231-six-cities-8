@@ -1,4 +1,4 @@
-import CardProps from '../types/forCards';
+import CardProps from 'types/forCards';
 
 const cards : CardProps[] = [
   {
