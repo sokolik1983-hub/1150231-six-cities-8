@@ -8,7 +8,7 @@ function App(): JSX.Element {
       <Switch>
         <Route path='/' exact render={() => <MainPageScreen items={cards} />} />
         <Route path='/login' exact component={ LoginPageScreen } />
-        <PrivateRoute authorizationStatus={false} path='/favorites' exact component={ FavoritesPageScreen } />
+        <PrivateRoute authorizationStatus={false} path='/favorites' exact Component={ FavoritesPageScreen } />
         <Route path='/offer/:id' exact component={ RoomPageScreen } />
         <Route>
           <NotFoundPageScreen />
