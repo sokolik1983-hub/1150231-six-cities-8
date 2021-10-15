@@ -1,25 +1,24 @@
 import {Route, Redirect, RouteProps} from 'react-router-dom';
-import {FC} from 'react';
 
 
 type PrivateRouteProps = RouteProps & {
   authorizationStatus: boolean,
-  path: string,
-  exact: boolean,
-  Component: FC
 }
 
-function PrivateRoute(props : PrivateRouteProps): JSX.Element {
+function PrivateRoute(props: PrivateRouteProps): JSX.Element {
 
-  const {exact, path, authorizationStatus, Component} = props;
+  const {exact, path, authorizationStatus, component: Component} = props;
 
   return (
-    <Route exact={exact} path={path} render={(items: RouteProps) =>
-    {if (authorizationStatus && Component)
-    {
-      return (<Component {...items} />);
-    }
-    return (<Redirect to={'/login'}/>);
+    <Route exact={exact} path={path} render={(items) => {
+      if (authorizationStatus && Component) {
+        return (
+          <Component {...items} />
+        );
+      }
+      return (
+        <Redirect to={'/login'}/>
+      );
     }}
     />
   );
