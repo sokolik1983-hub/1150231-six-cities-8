@@ -5,6 +5,7 @@ import RoomPageScreen from 'components/RoomPageScreen/RoomPageScreen';
 import NotFoundPageScreen from 'components/NotFoundPageScreen/NotFoundPageScreen';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import Card from 'components/PrivateRoute/PrivateRoute';
+import Comment from 'components/Comment/Comment';
 
 export {
   MainPageScreen,
@@ -13,5 +14,6 @@ export {
   RoomPageScreen,
   NotFoundPageScreen,
   PrivateRoute,
-  Card
+  Card,
+  Comment
 };

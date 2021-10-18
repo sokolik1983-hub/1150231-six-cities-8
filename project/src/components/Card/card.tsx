@@ -1,14 +1,25 @@
-import CardProps from 'types/forCards';
+import { useHistory } from 'react-router-dom';
+import CardProps from 'types/cardProps';
+import { MouseEventHandler } from 'react';
 
 function Card(props : CardProps): JSX.Element {
 
-  const {id , src, type, price, title, isPremium} = props;
+  const {id , src, type, price, title, isPremium, setActiveCard} = props;
 
+  const hoverCard: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement> = (e) => {
+    setActiveCard(id);
+  };
+
+  const history = useHistory();
+
+  const handleChange = () => {
+    history.push(`/offer/${id}`, {id: id , src: src, type: type, price: price, title: title, isPremium: isPremium});
+  };
   return (
-    <article className='cities__place-card place-card'>
+    <article className='cities__place-card place-card' onMouseEnter={hoverCard} onClick={handleChange}>
       {Boolean(isPremium) && <div className='place-card__mark'><span>Premium</span></div>}
       <div className='cities__image-wrapper place-card__image-wrapper'>
-        <a href='/#'><img className='place-card__image' src={src} width='260' height='200' alt='' /></a>
+        <img className='place-card__image' src={src} width='260' height='200' alt='' />
       </div>
       <div className='place-card__info'>
         <div className='place-card__price-wrapper'>
@@ -30,7 +41,7 @@ function Card(props : CardProps): JSX.Element {
           </div>
         </div>
         <h2 className='place-card__name'>
-          <a href='/#'>{title}</a>
+          {title}
         </h2>
         <p className='place-card__type'>{type}</p>
       </div>

@@ -5,5 +5,7 @@ interface CardProps {
   price: number,
   type: string,
   title: string,
+  city: string,
+  setActiveCard?: any
 }
 export default CardProps;

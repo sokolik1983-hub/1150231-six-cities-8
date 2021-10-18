@@ -1,5 +1,5 @@
 import {MainPageScreen, LoginPageScreen, PrivateRoute, FavoritesPageScreen, RoomPageScreen, NotFoundPageScreen} from 'components/config';
-import cards from 'fixtures/cards';
+import cards from 'mocks/offers';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 function App(): JSX.Element {
@@ -8,7 +8,7 @@ function App(): JSX.Element {
       <Switch>
         <Route path='/' exact render={() => <MainPageScreen items={cards} />} />
         <Route path='/login' exact component={ LoginPageScreen } />
-        <PrivateRoute component={ FavoritesPageScreen } authorizationStatus={ false } path='/favorites' exact  />
+        <PrivateRoute component={() => <FavoritesPageScreen items={cards}  /> }  authorizationStatus path='/favorites' exact />
         <Route path='/offer/:id' exact component={ RoomPageScreen } />
         <Route>
           <NotFoundPageScreen />
