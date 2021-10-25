@@ -8,7 +8,7 @@ function FavoriteCard(props: CardProps): JSX.Element {
   const history = useHistory();
 
   const handleChange = () => {
-    history.push(`/offer/${id}`, {id: id , src: src, type: type, price: price, title: title, isPremium: isPremium});
+    history.push(`/offer/${id}`, { type , price, title, isPremium});
   };
 
   return (

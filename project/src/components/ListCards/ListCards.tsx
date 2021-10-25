@@ -7,7 +7,7 @@ interface Props {
 }
 
 function ListCards({items} : Props): JSX.Element {
-  const [activeCard, setActiveCard] = useState(null);
+  const [activeCard, setActiveCard] = useState(-1);
 
 
   /* eslint-disable no-console */

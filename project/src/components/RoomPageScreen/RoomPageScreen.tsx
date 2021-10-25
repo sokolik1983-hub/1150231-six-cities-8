@@ -45,7 +45,7 @@ function RoomPageScreen(): JSX.Element {
               <nav className='header__nav'>
                 <ul className='header__nav-list'>
                   <li className='header__nav-item user'>
-                    <a className='header__nav-link header__nav-link--profile' href='/#'>
+                    <a className='header__nav-link header__nav-link--profile' href='/favorites'>
                       <div className='header__avatar-wrapper user__avatar-wrapper'>
                       </div>
                       <span className='header__user-name user__name'>Oliver.conner@gmail.com</span>
@@ -94,7 +94,7 @@ function RoomPageScreen(): JSX.Element {
                 </div>}
                 <div className='property__name-wrapper'>
                   <h1 className='property__name'>
-                    {title ?? 'Beautiful &amp; luxurious studio at great location'}
+                    {title || 'Beautiful &amp; luxurious studio at great location'}
                   </h1>
                   <button className='property__bookmark-button button' type='button'>
                     <svg className='property__bookmark-icon' width='31' height='33'>
@@ -112,7 +112,7 @@ function RoomPageScreen(): JSX.Element {
                 </div>
                 <ul className='property__features'>
                   <li className='property__feature property__feature--entire'>
-                    {type && type}
+                    {type || 'Default'}
                   </li>
                   <li className='property__feature property__feature--bedrooms'>
                     3 Bedrooms
@@ -122,7 +122,7 @@ function RoomPageScreen(): JSX.Element {
                   </li>
                 </ul>
                 <div className='property__price'>
-                  <b className='property__price-value'>&euro; {price ?? 0}</b>
+                  <b className='property__price-value'>&euro; {Math.max(0, price)}</b>
                   <span className='property__price-text'>&nbsp;night</span>
                 </div>
                 <div className='property__inside'>

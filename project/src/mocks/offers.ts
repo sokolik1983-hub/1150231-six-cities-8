@@ -8,7 +8,7 @@ const cards : CardProps[] = [
     price: 120,
     type: 'Apartment',
     title: 'Beautiful &amp; luxurious apartment at great location',
-    city: 'Амстердам',
+    city: 'Amsterdam',
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ const cards : CardProps[] = [
     price: 80,
     type: 'Private room',
     title: 'Wood and stone place',
-    city: 'Кёльн',
+    city: 'Berlin',
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ const cards : CardProps[] = [
     price: 132,
     type: 'Apartment',
     title: 'Canal View Prinsengracht',
-    city: 'Амстердам',
+    city: 'Amsterdam',
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ const cards : CardProps[] = [
     price: 180,
     type: 'Apartment',
     title: 'Nice, cozy, warm big bed apartment',
-    city: 'Кёльн',
+    city: 'Berlin',
   },
   {
     id: 5,
@@ -44,7 +44,7 @@ const cards : CardProps[] = [
     price: 801,
     type: 'Private room',
     title: 'Wood and stone place',
-    city: 'Амстердам',
+    city: 'Amsterdam',
   },
   {
     id: 6,
@@ -53,7 +53,7 @@ const cards : CardProps[] = [
     price: 801,
     type: 'Private room',
     title: 'Wood and stone place',
-    city: 'Лондон',
+    city: 'London',
   },
 ];
 
