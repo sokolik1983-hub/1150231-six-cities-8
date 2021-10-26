@@ -1,7 +1,7 @@
 import {useHistory} from 'react-router-dom';
-import CardProps from 'types/cardProps';
+import { BaseCard } from 'types/cardProps';
 
-function FavoriteCard(props: CardProps): JSX.Element {
+function FavoriteCard(props: BaseCard): JSX.Element {
 
   const {id, src, type, price, title, isPremium} = props;
 

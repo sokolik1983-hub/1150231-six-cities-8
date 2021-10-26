@@ -1,4 +1,4 @@
-interface CardProps {
+export interface BaseCard {
   id: number,
   isPremium: boolean,
   src: string,
@@ -6,6 +6,8 @@ interface CardProps {
   type: string,
   title: string,
   city: string,
-  setActiveCard?: any
 }
-export default CardProps;
+
+export interface CardProps {
+  setActiveCard?: (fields: BaseCard) => void,
+}

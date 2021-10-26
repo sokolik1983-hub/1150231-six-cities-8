@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import ListCards from '../ListCards/ListCards';
-import CardProps from 'types/cardProps';
+import { BaseCard } from 'types/cardProps';
 
 interface Props {
-  items: CardProps[]
+  items: BaseCard[]
 }
 
 function MainPageScreen({ items }: Props): JSX.Element {

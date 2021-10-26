@@ -1,17 +1,17 @@
-import CardProps from 'types/cardProps';
+import { BaseCard } from 'types/cardProps';
 import FavoriteCard from '../FavoriteCard/FavoriteCard';
 
 interface Props {
-  items: CardProps[]
+  items: BaseCard[]
 }
 
 function FavoriteListCard({items}: Props): JSX.Element {
-
+  const cityArray = [...(new Set(items.map((item) => item.city)))]; //Собираем массив городов, которые у нас есть и избавляемся от повторов.
   return (
     <ul className='favorites__list'>
       {
-        [...(new Set(items.map((item) => item.city)))]?.map((city: string, index) => (
-          <li key={index.toString()} className='favorites__locations-items'>
+        cityArray?.map((city: string) => (
+          <li key={city} className='favorites__locations-items'>
             <div className='favorites__locations locations locations--current'>
               <div className='locations__item'>
                 <a className='locations__item-link' href='/#'>

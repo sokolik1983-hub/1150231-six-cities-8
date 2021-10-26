@@ -1,5 +1,5 @@
 import {MainPageScreen, LoginPageScreen, PrivateRoute, FavoritesPageScreen, RoomPageScreen, NotFoundPageScreen} from 'components/config';
-import cards from 'mocks/offers';
+import cards from 'fixtures/offers';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 function App(): JSX.Element {

@@ -1,14 +1,14 @@
 import { useHistory, Link } from 'react-router-dom';
-import CardProps from 'types/cardProps';
-import { MouseEventHandler } from 'react';
+import { BaseCard } from 'types/cardProps';
+import { useState } from 'react';
 
-function Card(props : CardProps): JSX.Element {
+function Card(props : BaseCard): JSX.Element {
+  const [activeCard, setActiveCard] = useState(-1);
+  /* eslint-disable no-console */
+  console.log('props, props', activeCard);
+  /* eslint-enable no-console */
 
-  const { id , src, type, price, title, isPremium, setActiveCard } = props;
-
-  const hoverCard: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement> = () => {
-    setActiveCard(id);
-  };
+  const { id, type, price, title, isPremium, src } = props;
 
   const history = useHistory();
 
@@ -16,7 +16,11 @@ function Card(props : CardProps): JSX.Element {
     history.push(`/offer/${ id }`, { type, price, title, isPremium });
   };
   return (
-    <article className='cities__place-card place-card' onMouseEnter={hoverCard} onClick={handleChange}>
+    <article className='cities__place-card place-card'
+      onMouseEnter={() => setActiveCard(id)}
+      onClick={handleChange}
+      onMouseLeave={() => setActiveCard(-1)}
+    >
       {Boolean(isPremium) && <div className='place-card__mark'><span>Premium</span></div>}
       <div className='cities__image-wrapper place-card__image-wrapper'>
         <Link to={`/offer/${ id }`}>

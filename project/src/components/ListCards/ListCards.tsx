@@ -1,19 +1,11 @@
-import CardProps from '../../types/cardProps';
+import { BaseCard } from '../../types/cardProps';
 import Card from '../Card/card';
-import { useState } from 'react';
 
 interface Props {
-  items: CardProps[]
+  items: BaseCard[]
 }
 
 function ListCards({items} : Props): JSX.Element {
-  const [activeCard, setActiveCard] = useState(-1);
-
-
-  /* eslint-disable no-console */
-  console.log(activeCard);
-  /* eslint-enable no-console */
-
   return (
     <section className='cities__places places'>
       <h2 className='visually-hidden'>Places</h2>
@@ -31,7 +23,7 @@ function ListCards({items} : Props): JSX.Element {
       <div className='cities__places-list places__list tabs__content'>
         {
           items?.map((item) => (
-            <Card key={`product-card-${item.id}`} {...item} setActiveCard={setActiveCard}/>
+            <Card key={`product-card-${item.id}`} {...item} />
           ))
         }
       </div>

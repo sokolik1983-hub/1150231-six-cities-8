@@ -1,9 +1,9 @@
-import CardProps from 'types/cardProps';
+import { BaseCard } from 'types/cardProps';
 import { Link } from 'react-router-dom';
 import FavoriteListCards from '../FavoriteListCards/FavoriteListCards';
 
 interface Props {
-  items: CardProps[]
+  items: BaseCard[]
 }
 
 function FavoritesPageScreen({ items }: Props): JSX.Element {
