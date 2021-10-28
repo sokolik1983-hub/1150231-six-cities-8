@@ -1,14 +1,31 @@
-import CardProps from 'types/forCards';
+import { useHistory, Link } from 'react-router-dom';
+import { BaseCard } from 'types/cardProps';
+import { useState } from 'react';
 
-function Card(props : CardProps): JSX.Element {
+function Card(props : BaseCard): JSX.Element {
+  const [activeCard, setActiveCard] = useState(-1);
+  /* eslint-disable no-console */
+  console.log('props, props', activeCard);
+  /* eslint-enable no-console */
 
-  const {id , src, type, price, title, isPremium} = props;
+  const { id, type, price, title, isPremium, src } = props;
 
+  const history = useHistory();
+
+  const handleChange = () => {
+    history.push(`/offer/${ id }`, { type, price, title, isPremium });
+  };
   return (
-    <article className='cities__place-card place-card'>
+    <article className='cities__place-card place-card'
+      onMouseEnter={() => setActiveCard(id)}
+      onClick={handleChange}
+      onMouseLeave={() => setActiveCard(-1)}
+    >
       {Boolean(isPremium) && <div className='place-card__mark'><span>Premium</span></div>}
       <div className='cities__image-wrapper place-card__image-wrapper'>
-        <a href='/#'><img className='place-card__image' src={src} width='260' height='200' alt='' /></a>
+        <Link to={`/offer/${ id }`}>
+          <img className='place-card__image' src={src} width='260' height='200' alt='' />
+        </Link>
       </div>
       <div className='place-card__info'>
         <div className='place-card__price-wrapper'>
@@ -30,7 +47,9 @@ function Card(props : CardProps): JSX.Element {
           </div>
         </div>
         <h2 className='place-card__name'>
-          <a href='/#'>{title}</a>
+          <Link to={`/offer/${ id }`}>
+            {title}
+          </Link>
         </h2>
         <p className='place-card__type'>{type}</p>
       </div>
