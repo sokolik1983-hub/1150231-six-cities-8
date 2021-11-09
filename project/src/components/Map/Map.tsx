@@ -3,9 +3,20 @@ import {useRef, useEffect} from 'react';
 import 'leaflet/dist/leaflet.css';
 import {URL_MARKER_DEFAULT} from '../const';
 import useMap from '../../hooks/useMap/useMap';
+import type {Points, Point} from '../../types/points';
+import type {City} from '../../types/city';
 
-function Map(props: any): JSX.Element {
+type AppProps = {
+  city: City[];
+  points: Points;
+};
+
+function Map(props: AppProps): JSX.Element {
   const {city, points} = props;
+
+  /* eslint-disable no-console */
+  console.log('3',props);
+  /* eslint-enable no-console */
 
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
@@ -18,7 +29,7 @@ function Map(props: any): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      points.forEach((point: any) => {
+      points.forEach((point: Point ) => {
         leaflet
           .marker({
             lat: point.lat,
@@ -29,7 +40,7 @@ function Map(props: any): JSX.Element {
           .addTo(map);
       });
     }
-  }, [map, points]);
+  }, [map, points, defaultCustomIcon]);
 
   return (
     <div
