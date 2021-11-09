@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import ListCards from '../ListCards/ListCards';
 import { BaseCard } from 'types/cardProps';
 import Map from '../Map/Map';
-import {City} from '../../fixtures/city';
+import {city} from '../../fixtures/city';
+import {points} from '../../fixtures/points';
 
 interface Props {
   items: BaseCard[]
@@ -96,7 +97,9 @@ function MainPageScreen({ items }: Props): JSX.Element {
 
               <ListCards items={items}/>
               <div className='cities__right-section'>
-                <Map city={City} />
+                <div className="cities__map">
+                  <Map points={points} city={city}  />
+                </div>
               </div>
             </div>
           </div>

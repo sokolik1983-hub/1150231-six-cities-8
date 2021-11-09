@@ -4,16 +4,13 @@ import { useState } from 'react';
 
 function Card(props : BaseCard): JSX.Element {
   const [activeCard, setActiveCard] = useState(-1);
-  /* eslint-disable no-console */
-  console.log('props, props', activeCard);
-  /* eslint-enable no-console */
 
   const { id, type, price, title, isPremium, src } = props;
 
   const history = useHistory();
 
   const handleChange = () => {
-    history.push(`/offer/${ id }`, { type, price, title, isPremium });
+    history.push(`/offer/${activeCard}`, { type, price, title, isPremium });
   };
   return (
     <article className='cities__place-card place-card'

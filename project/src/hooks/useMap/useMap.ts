@@ -4,10 +4,6 @@ import leaflet from 'leaflet';
 function useMap(mapRef: any, {...city}: any) {
   const [map, setMap] = useState<leaflet.Map | null>(null);
 
-  /* eslint-disable no-console */
-  console.log('1',city[0].lat);
-  /* eslint-enable no-console */
-
   useEffect(() => {
     if (mapRef.current !== null && map === null) {
       const instance: leaflet.Map = leaflet.map(mapRef.current, {

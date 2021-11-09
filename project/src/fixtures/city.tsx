@@ -1,6 +1,4 @@
-export type {CITY} from '../types/city';
-
-export const City = [
+export const city = [
   {
     title: 'Amsterdam',
     lat: 52.3909553943508,
