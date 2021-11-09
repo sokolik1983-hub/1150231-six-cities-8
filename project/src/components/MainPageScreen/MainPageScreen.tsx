@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import ListCards from '../ListCards/ListCards';
 import { BaseCard } from 'types/cardProps';
 import Map from '../Map/Map';
-import {Cities} from '../../fixtures/cities';
+import {City} from '../../fixtures/city';
 
 interface Props {
   items: BaseCard[]
@@ -96,7 +96,7 @@ function MainPageScreen({ items }: Props): JSX.Element {
 
               <ListCards items={items}/>
               <div className='cities__right-section'>
-                <Map city={Cities} />
+                <Map city={City} />
               </div>
             </div>
           </div>
