@@ -14,9 +14,6 @@ function RoomPageScreen(): JSX.Element {
 
   const { type, price, title, isPremium} = state;
 
-  /* eslint-disable no-console */
-  console.log('location', type, price, title, isPremium); // result: '/secondpage'value'
-  /* eslint-enable no-console */
   return (
     <>
       <div style={{display: 'none'}}>
