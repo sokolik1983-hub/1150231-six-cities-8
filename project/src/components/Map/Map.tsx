@@ -14,10 +14,6 @@ type AppProps = {
 function Map(props: AppProps): JSX.Element {
   const {city, points} = props;
 
-  /* eslint-disable no-console */
-  console.log('3',props);
-  /* eslint-enable no-console */
-
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 

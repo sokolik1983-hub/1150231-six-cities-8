@@ -1,15 +1,29 @@
 import { Link } from 'react-router-dom';
 import ListCards from '../ListCards/ListCards';
-import { BaseCard } from 'types/cardProps';
 import Map from '../Map/Map';
 import {city} from '../../fixtures/city';
 import {points} from '../../fixtures/points';
+import {connect} from 'react-redux';
+import ListCities from '../ListCities/ListCities';
+import {useEffect, useState} from 'react';
+import {State} from '../../types/state';
 
-interface Props {
-  items: BaseCard[]
-}
+const mapStateToProps = ({offers}: State) => ({
+  offers,
+});
 
-function MainPageScreen({ items }: Props): JSX.Element {
+const connector = connect(mapStateToProps, null);
+
+function MainPageScreen(props: any): JSX.Element {
+  const {offers} = props;
+  const [currentCity, setCurrentCity] = useState('Paris');
+  const [currentOffers, setCurrentOffers] = useState(null);
+
+  useEffect(() => {
+    const filterOffers = offers.filter((obj: any) => obj.city.name === currentCity);
+    setCurrentOffers(filterOffers);
+  }, [currentCity]);
+
   return (
     <>
       <div style={{display: 'none'}}>
@@ -53,49 +67,14 @@ function MainPageScreen({ items }: Props): JSX.Element {
             </div>
           </div>
         </header>
-
+        <ListCities currentCity={currentCity} setCurrentCity={setCurrentCity} />
         <main className='page__main page__main--index'>
           <h1 className='visually-hidden'>Cities</h1>
-          <div className='tabs'>
-            <section className='locations container'>
-              <ul className='locations__list tabs__list'>
-                <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='/#'>
-                    <span>Paris</span>
-                  </a>
-                </li>
-                <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='/#'>
-                    <span>Cologne</span>
-                  </a>
-                </li>
-                <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='/#'>
-                    <span>Brussels</span>
-                  </a>
-                </li>
-                <li className='locations__item'>
-                  <a href='/#' className='locations__item-link tabs__item tabs__item--active'>
-                    <span>Amsterdam</span>
-                  </a>
-                </li>
-                <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='/#'>
-                    <span>Hamburg</span>
-                  </a>
-                </li>
-                <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='/#'>
-                    <span>Dusseldorf</span>
-                  </a>
-                </li>
-              </ul>
-            </section>
-          </div>
+
           <div className='cities'>
             <div className='cities__places-container container'>
 
-              <ListCards items={items}/>
+              <ListCards items={currentOffers} currentCity={currentCity}/>
               <div className='cities__right-section'>
                 <div className="cities__map">
                   <Map points={points} city={city}  />
@@ -108,4 +87,4 @@ function MainPageScreen({ items }: Props): JSX.Element {
     </>
   );
 }
-export default MainPageScreen;
+export default connector(MainPageScreen);

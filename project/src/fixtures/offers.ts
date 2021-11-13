@@ -1,6 +1,4 @@
-import { BaseCard } from 'types/cardProps';
-
-const cards : BaseCard[] = [
+const cards : any = [  //BaseCard[]
   {
     id: 1,
     isPremium: true,

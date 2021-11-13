@@ -1,11 +1,11 @@
-import {points} from '../fixtures/points';
+import {offers} from '../fixtures/test';
 import {State} from '../types/state';
 import {Actions, ActionType} from '../types/action';
 
 
 const initialState = {
   city: 'Paris',
-  points,
+  offers,
 };
 
 function reducer(state: State = initialState, action: Actions): State {

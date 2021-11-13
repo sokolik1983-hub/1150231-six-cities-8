@@ -1,11 +1,10 @@
 import { useHistory, Link } from 'react-router-dom';
-import { BaseCard } from 'types/cardProps';
 import { useState } from 'react';
 
-function Card(props : BaseCard): JSX.Element {
+function Card(props : any): JSX.Element {
   const [activeCard, setActiveCard] = useState(-1);
 
-  const { id, type, price, title, isPremium, src } = props;
+  const { id, type, price, title, isPremium, previewImage } = props;
 
   const history = useHistory();
 
@@ -21,7 +20,7 @@ function Card(props : BaseCard): JSX.Element {
       {Boolean(isPremium) && <div className='place-card__mark'><span>Premium</span></div>}
       <div className='cities__image-wrapper place-card__image-wrapper'>
         <Link to={`/offer/${id}`}>
-          <img className='place-card__image' src={src} width='260' height='200' alt='' />
+          <img className='place-card__image' src={previewImage} width='260' height='200' alt='' />
         </Link>
       </div>
       <div className='place-card__info'>
