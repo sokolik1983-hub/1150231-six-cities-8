@@ -1,8 +1,12 @@
 import {Review} from '../../types/reviews';
 import ReviewItem from '../ReviewItem/ReviewItem';
 
-function ReviewsList (props: any) {
-  const {reviews}: any = props;
+type Props = {
+  reviews: Review[];
+}
+
+function ReviewsList (props: Props): JSX.Element {
+  const {reviews}: Props = props;
 
   return (
     <ul className='reviews__list'>

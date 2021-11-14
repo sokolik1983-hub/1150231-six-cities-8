@@ -1,6 +1,16 @@
-// type Props = {
-//   user: 'any non-nullish value',
-// }
+type Props = {
+  reviews: Reviews,
+}
+type Reviews = {
+  comment: string,
+  user: User,
+  rating: number,
+  date: string
+}
+type User = {
+  avatarUrl: string;
+  name: string;
+}
 
 const monthNames = [
   'January',
@@ -17,26 +27,21 @@ const monthNames = [
   'December',
 ];
 
-function ReviewItem (props: any) {
+function ReviewItem (props: Props): JSX.Element {
 
-  const {comment , user, rating = '5', date} = props.reviews;
+  const {comment , user, rating = 5, date}: Reviews = props.reviews;
 
   const widthRating = 20 * rating;
 
   const year = date.split('-')[0];
-  const monthIndex = date.split('-')[1].replace(/^0+/, '') - 1;
-
-  /* eslint-disable no-console */
-  console.log('date',date);
-  console.log('monthIndex',monthIndex);
-  console.log('monthNames',monthNames);
-  /* eslint-enable no-console */
+  const month: string = date.split('-')[1];
+  const monthIndex: number = +month.replace(/^0+/, '') - 1;
 
   return (
     <li className='reviews__item'>
       <div className='reviews__user user'>
         <div className='reviews__avatar-wrapper user__avatar-wrapper'>
-          <img className='reviews__avatar user__avatar' src={user.avatar_url} width='54' height='54' alt='Reviews avatar' />
+          <img className='reviews__avatar user__avatar' src={user.avatarUrl} width='54' height='54' alt='Reviews avatar' />
         </div>
         <span className='reviews__user-name'>{user.name}</span>
       </div>
