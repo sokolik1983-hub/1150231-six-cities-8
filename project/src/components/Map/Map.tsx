@@ -4,18 +4,18 @@ import 'leaflet/dist/leaflet.css';
 import {URL_MARKER_DEFAULT} from '../const';
 import useMap from '../../hooks/useMap/useMap';
 import type {Points, Point} from '../../types/points';
-import type {City} from '../../types/city';
+import {Cities} from '../../types/city';
 
 type AppProps = {
-  city: City[];
+  location: Cities[];
   points: Points;
 };
 
 function Map(props: AppProps): JSX.Element {
-  const {city, points} = props;
+  const {location, points} = props;
 
   const mapRef = useRef(null);
-  const map = useMap(mapRef, city);
+  const map = useMap(mapRef, location);
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,

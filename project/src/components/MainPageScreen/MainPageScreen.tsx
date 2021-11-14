@@ -1,28 +1,54 @@
 import { Link } from 'react-router-dom';
 import ListCards from '../ListCards/ListCards';
 import Map from '../Map/Map';
-import {city} from '../../fixtures/city';
-import {points} from '../../fixtures/points';
+import {cities} from '../../fixtures/cities';
 import {connect} from 'react-redux';
 import ListCities from '../ListCities/ListCities';
 import {useEffect, useState} from 'react';
 import {State} from '../../types/state';
+import {points} from '../../fixtures/points';
+import {Points} from '../../types/points';
+import {Offer} from '../../types/offer';
 
 const mapStateToProps = ({offers}: State) => ({
   offers,
 });
 
+type NewObj = {
+  title: string;
+  lat: number;
+  lng: number;
+}
+
 const connector = connect(mapStateToProps, null);
 
 function MainPageScreen(props: any): JSX.Element {
-  const {offers} = props;
-  const [currentCity, setCurrentCity] = useState('Paris');
+  const {offers}: any = props;
+
+  const [currentCity, setCurrentCity] = useState(cities[0].title);
   const [currentOffers, setCurrentOffers] = useState(null);
+  const [location, setLocation] = useState(cities);
+  const [currentPoints, setCurrentPoints] = useState(points);
 
   useEffect(() => {
-    const filterOffers = offers.filter((obj: any) => obj.city.name === currentCity);
+    const filterOffers = offers.filter((obj: Offer) => obj.city.name === currentCity);
+    const currentLocation = cities.filter((item: any) => item.title === currentCity);
+    setLocation(currentLocation);
     setCurrentOffers(filterOffers);
   }, [currentCity]);
+
+  useEffect(() => {
+    const newArr: Points = [];
+    offers.forEach((item: any) => {
+      const newObj: NewObj = {
+        title: item.city.name,
+        lat: item.location.latitude,
+        lng: item.location.longitude,
+      };
+      newArr.push(newObj);
+      setCurrentPoints(newArr);
+    });
+  }, []);
 
   return (
     <>
@@ -77,7 +103,7 @@ function MainPageScreen(props: any): JSX.Element {
               <ListCards items={currentOffers} currentCity={currentCity}/>
               <div className='cities__right-section'>
                 <div className="cities__map">
-                  <Map points={points} city={city}  />
+                  <Map points={currentPoints} location={location}  />
                 </div>
               </div>
             </div>
