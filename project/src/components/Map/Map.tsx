@@ -25,7 +25,7 @@ function Map(props: AppProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      points.forEach((point: Point ) => {
+      points?.forEach((point: Point ) => {
         leaflet
           .marker({
             lat: point.lat,

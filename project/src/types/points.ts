@@ -4,4 +4,4 @@ export type Point = {
   lng: number;
 };
 
-export type Points = Point[];
+export type Points = Point[] | null;

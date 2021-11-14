@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import ListCities from '../ListCities/ListCities';
 import {useEffect, useState} from 'react';
 import {State} from '../../types/state';
-import {points} from '../../fixtures/points';
 import {Points} from '../../types/points';
 import {Offer} from '../../types/offer';
 
@@ -28,18 +27,18 @@ function MainPageScreen(props: any): JSX.Element {
   const [currentCity, setCurrentCity] = useState(cities[0].title);
   const [currentOffers, setCurrentOffers] = useState(null);
   const [location, setLocation] = useState(cities);
-  const [currentPoints, setCurrentPoints] = useState(points);
+  const [currentPoints, setCurrentPoints] = useState<Points>(null);
 
   useEffect(() => {
     const filterOffers = offers.filter((obj: Offer) => obj.city.name === currentCity);
     const currentLocation = cities.filter((item: any) => item.title === currentCity);
     setLocation(currentLocation);
     setCurrentOffers(filterOffers);
-  }, [currentCity]);
+  }, [currentCity, offers]);
 
   useEffect(() => {
     const newArr: Points = [];
-    offers.forEach((item: any) => {
+    offers.forEach((item: Offer) => {
       const newObj: NewObj = {
         title: item.city.name,
         lat: item.location.latitude,
@@ -48,7 +47,7 @@ function MainPageScreen(props: any): JSX.Element {
       newArr.push(newObj);
       setCurrentPoints(newArr);
     });
-  }, []);
+  }, [offers]);
 
   return (
     <>

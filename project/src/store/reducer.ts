@@ -1,4 +1,4 @@
-import {offers} from '../fixtures/test';
+import {offers} from '../fixtures/currentOffers';
 import {State} from '../types/state';
 import {Actions, ActionType} from '../types/action';
 

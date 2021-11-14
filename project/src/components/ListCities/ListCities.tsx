@@ -1,3 +1,5 @@
+import {Dispatch, SetStateAction} from 'react';
+
 const cities = [
   'Paris',
   'Cologne',
@@ -6,7 +8,11 @@ const cities = [
   'Hamburg',
   'Dusseldorf',
 ];
-function ListCities (props: any): JSX.Element {
+type Props = {
+  currentCity: string;
+  setCurrentCity:  Dispatch<SetStateAction<string>>;
+}
+function ListCities (props: Props): JSX.Element {
   const {currentCity, setCurrentCity} = props;
 
   const handleClick = (item:string) => {
