@@ -8,6 +8,7 @@ import {useEffect, useState} from 'react';
 import {State} from '../../types/state';
 import {Points} from '../../types/points';
 import {Offer} from '../../types/offer';
+import {Cities} from '../../types/city';
 
 const mapStateToProps = ({offers}: State) => ({
   offers,
@@ -21,7 +22,7 @@ type NewObj = {
 
 const connector = connect(mapStateToProps, null);
 
-function MainPageScreen(props: any): JSX.Element {
+function MainPageScreen(props: State | null): JSX.Element {
   const {offers}: any = props;
 
   const [currentCity, setCurrentCity] = useState(cities[0].title);
@@ -31,7 +32,7 @@ function MainPageScreen(props: any): JSX.Element {
 
   useEffect(() => {
     const filterOffers = offers.filter((obj: Offer) => obj.city.name === currentCity);
-    const currentLocation = cities.filter((item: any) => item.title === currentCity);
+    const currentLocation = cities.filter((item: Cities) => item.title === currentCity);
     setLocation(currentLocation);
     setCurrentOffers(filterOffers);
   }, [currentCity, offers]);

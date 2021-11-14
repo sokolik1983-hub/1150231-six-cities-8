@@ -8,10 +8,12 @@ const cities = [
   'Hamburg',
   'Dusseldorf',
 ];
+
 type Props = {
   currentCity: string;
   setCurrentCity:  Dispatch<SetStateAction<string>>;
 }
+
 function ListCities (props: Props): JSX.Element {
   const {currentCity, setCurrentCity} = props;
 
