@@ -23,7 +23,7 @@ type NewObj = {
 const connector = connect(mapStateToProps, null);
 
 function MainPageScreen(props: State | null): JSX.Element {
-  const {offers}: any = props;
+  const {offers}: any = props; //не разобрался , как типизировать
 
   const [currentCity, setCurrentCity] = useState(cities[0].title);
   const [currentOffers, setCurrentOffers] = useState(null);

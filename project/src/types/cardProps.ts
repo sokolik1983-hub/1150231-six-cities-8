@@ -6,6 +6,7 @@ export interface BaseCard {
   type: string,
   title: string,
   city: string,
+  previewImage?: string,
 }
 
 export interface CardProps {
