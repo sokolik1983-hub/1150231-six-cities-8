@@ -1,22 +1,14 @@
-const cities = [
-  'Paris',
-  'Cologne',
-  'Brussels',
-  'Amsterdam',
-  'Hamburg',
-  'Dusseldorf',
-];
-
 type Props = {
   city: string;
-  onClickCity: any;
+  onClickCity: (city: string) => void;
+  listCities: string[],
 }
 
 
 function ListCities (props: Props): JSX.Element {
-  const {city, onClickCity} = props;
+  const {city, onClickCity, listCities} = props;
 
-  const handleClick = (item:string) => {
+  const handleClick = (item: string) => {
     onClickCity(item);
   };
   return (
@@ -24,7 +16,7 @@ function ListCities (props: Props): JSX.Element {
       <section className='locations container'>
         <ul className='locations__list tabs__list'>
           {
-            cities.map((item) => (
+            listCities?.map((item: string) => (
               <li key={item} className='locations__item'>
                 <a onClick={() => handleClick(item)} className={`locations__item-link ${city === item && 'active'} tabs__item`} href='/#'>
                   <span>{item}</span>

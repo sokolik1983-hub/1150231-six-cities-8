@@ -1,8 +1,10 @@
 import {Offer} from "./offer";
+import {CityLocation} from "./offer";
 
 export type State = {
   city: string,
-  offers: Offer[], //написал сначала object[], но eslint выдаёт ошибку, что-то типа "нельзя использовать, ибо сложно)
+  offers: Offer[],
   points: any[],
-  currentCityLocation: object,
+  currentCityLocation: CityLocation | undefined,
+  listCities: string[],
 }

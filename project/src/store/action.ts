@@ -37,3 +37,11 @@ export const getCurrentCityLocation = createAction(
     },
   } as const),
 );
+export const getListCities = createAction(
+  ActionType.GetListCities,
+  (currentOffers) => ({
+    payload: {
+      currentOffers,
+    },
+  } as const),
+);

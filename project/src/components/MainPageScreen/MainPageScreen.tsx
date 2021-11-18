@@ -5,13 +5,14 @@ import ListCities from '../ListCities/ListCities';
 import {Dispatch, useEffect} from 'react';
 import {State} from '../../types/state';
 import {Actions} from '../../types/action';
-import {chooseCity, filterOffersCity, filterPointsCity, getCurrentCityLocation} from '../../store/action';
+import {chooseCity, filterOffersCity, filterPointsCity, getCurrentCityLocation, getListCities} from '../../store/action';
 import Map from '../Map/Map';
 import {Offer} from '../../types/offer';
 
-const mapStateToProps = ({offers, city}: State) => ({
+const mapStateToProps = ({offers, city, listCities}: State) => ({
   offers,
   city,
+  listCities,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
@@ -29,6 +30,9 @@ const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
   onGetLocationCity(city: string, offers: Offer[]) {
     dispatch(getCurrentCityLocation(city, offers));
   },
+  onGetListCities(offers: Offer[]) {
+    dispatch(getListCities(offers));
+  },
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -36,12 +40,13 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function MainPageScreen(props: PropsFromRedux): JSX.Element {
-  const {offers, onFilterCity, city, onClickCity, onFilterPoints, onGetLocationCity} = props;
+  const {offers, onFilterCity, city, onClickCity, onFilterPoints, onGetLocationCity, onGetListCities, listCities} = props;
 
   useEffect(() => {
     onFilterCity(city, offers);
     onFilterPoints(city, offers);
     onGetLocationCity(city, offers);
+    onGetListCities(offers);
   }, [city]);
 
   return (
@@ -87,7 +92,7 @@ function MainPageScreen(props: PropsFromRedux): JSX.Element {
             </div>
           </div>
         </header>
-        <ListCities city={city} onClickCity={onClickCity} />
+        <ListCities city={city} onClickCity={onClickCity} listCities={listCities}/>
         <main className='page__main page__main--index'>
           <h1 className='visually-hidden'>Cities</h1>
 
