@@ -1,4 +1,6 @@
 export type Offers = {
+  map: (item: any) => JSX.Element;
+  length: number;
   offers: Offer[];
 }
 

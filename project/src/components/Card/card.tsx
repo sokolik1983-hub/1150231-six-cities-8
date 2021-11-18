@@ -1,8 +1,7 @@
 import { useHistory, Link } from 'react-router-dom';
 import { useState } from 'react';
-import {BaseCard} from '../../types/cardProps';
 
-function Card(props : BaseCard): JSX.Element {
+function Card(props : any): JSX.Element {
   const [activeCard, setActiveCard] = useState(-1);
 
   const { id, type, price, title, isPremium, previewImage } = props;

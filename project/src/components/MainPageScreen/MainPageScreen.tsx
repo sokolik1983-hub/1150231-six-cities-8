@@ -1,23 +1,24 @@
 import {Link} from 'react-router-dom';
 import ListCards from '../ListCards/ListCards';
-import {connect} from 'react-redux';
+import {connect, ConnectedProps} from 'react-redux';
 import ListCities from '../ListCities/ListCities';
 import {Dispatch, useEffect} from 'react';
 import {State} from '../../types/state';
 import {Actions} from '../../types/action';
 import {chooseCity, filterOffersCity, filterPointsCity, getCurrentCityLocation} from '../../store/action';
 import Map from '../Map/Map';
-import {Offers} from '../../types/offer';
+import {Offer} from '../../types/offer';
 
 const mapStateToProps = ({offers, city}: State) => ({
   offers,
   city,
 });
+
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
-  onFilterCity(city: string, offers: Offers) {
+  onFilterCity(city: string, offers: Offer[]) {
     dispatch(filterOffersCity(city, offers));
   },
-  onFilterPoints(city: string, offers: Offers) {
+  onFilterPoints(city: string, offers: Offer[]) {
     dispatch(filterPointsCity(city, offers));
   },
   onClickCity(city: string) {
@@ -25,14 +26,17 @@ const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
       payload: city,
     }));
   },
-  onGetLocationCity(city: string, offers: Offers) {
+  onGetLocationCity(city: string, offers: Offer[]) {
     dispatch(getCurrentCityLocation(city, offers));
   },
 });
+
 const connector = connect(mapStateToProps, mapDispatchToProps);
 
-function MainPageScreen(props: State | null): JSX.Element {
-  const {offers, onFilterCity, city, onClickCity, onFilterPoints, onGetLocationCity}: any = props; //не разобрался , как типизировать
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function MainPageScreen(props: PropsFromRedux): JSX.Element {
+  const {offers, onFilterCity, city, onClickCity, onFilterPoints, onGetLocationCity} = props;
 
   useEffect(() => {
     onFilterCity(city, offers);
