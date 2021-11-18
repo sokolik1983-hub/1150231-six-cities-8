@@ -9,9 +9,6 @@ type Props = {
 function ListCards(props: Props): JSX.Element {
   const {items, currentCity} = props;
 
-  /* eslint-disable no-console */
-  console.log('props',items);
-  /* eslint-enable no-console */
   return (
     <section className='cities__places places'>
       <h2 className='visually-hidden'>Places</h2>

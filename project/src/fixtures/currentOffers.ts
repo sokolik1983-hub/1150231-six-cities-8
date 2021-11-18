@@ -22,7 +22,7 @@ export const offers: Offer[] = [
     'id': 1,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': false,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 52.35514938496378,
       'longitude': 4.673877537499948,
@@ -56,7 +56,7 @@ export const offers: Offer[] = [
     'id': 2,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': false,
-    'is_premium': true,
+    'isPremium': true,
     'location': {
       'latitude': 52.369814,
       'longitude': 4.896092,
@@ -90,7 +90,7 @@ export const offers: Offer[] = [
     'id': 3,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': false,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 52.369245,
       'longitude':  4.899386,
@@ -124,7 +124,7 @@ export const offers: Offer[] = [
     'id': 4,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': false,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 52.370216,
       'longitude': 4.895168,
@@ -159,7 +159,7 @@ export const offers: Offer[] = [
     'id': 5,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': true,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 48.8529272222,
       'longitude': 2.34880002222,
@@ -193,7 +193,7 @@ export const offers: Offer[] = [
     'id': 6,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': true,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 48.852714,
       'longitude': 2.300208,
@@ -227,7 +227,7 @@ export const offers: Offer[] = [
     'id': 7,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': true,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 48.852917,
       'longitude': 2.306988,
@@ -261,7 +261,7 @@ export const offers: Offer[] = [
     'id': 8,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': true,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 48.848545,
       'longitude': 2.302903,
@@ -295,7 +295,7 @@ export const offers: Offer[] = [
     'id': 9,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': true,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 48.848545,
       'longitude': 2.302903,
@@ -330,7 +330,7 @@ export const offers: Offer[] = [
     'id': 10,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': true,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 50.939738,
       'longitude': 6.958528,
@@ -364,7 +364,7 @@ export const offers: Offer[] = [
     'id': 11,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': true,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 50.940387,
       'longitude': 6.960764,
@@ -398,7 +398,7 @@ export const offers: Offer[] = [
     'id': 12,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': true,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 50.939542,
       'longitude': 6.957052,
@@ -433,7 +433,7 @@ export const offers: Offer[] = [
     'id': 13,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': true,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 50.939738,
       'longitude': 4.359209,
@@ -467,7 +467,7 @@ export const offers: Offer[] = [
     'id': 14,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': true,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 50.846354,
       'longitude': 4.352057,
@@ -502,7 +502,7 @@ export const offers: Offer[] = [
     'id': 15,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': true,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 50.846354,
       'longitude': 4.34878,
@@ -536,7 +536,7 @@ export const offers: Offer[] = [
     'id': 16,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': true,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 53.546166,
       'longitude': 10.035332,
@@ -571,7 +571,7 @@ export const offers: Offer[] = [
     'id': 17,
     'images': ['img/1.png', 'img/2.png'],
     'is_favorite': true,
-    'is_premium': false,
+    'isPremium': false,
     'location': {
       'latitude': 51.22774,
       'longitude': 6.77346,

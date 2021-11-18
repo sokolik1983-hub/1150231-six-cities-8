@@ -1,7 +1,8 @@
 import { useHistory, Link } from 'react-router-dom';
 import { useState } from 'react';
+import {Offer} from '../../types/offer';
 
-function Card(props : any): JSX.Element {
+function Card(props : Offer): JSX.Element {
   const [activeCard, setActiveCard] = useState(-1);
 
   const { id, type, price, title, isPremium, previewImage } = props;

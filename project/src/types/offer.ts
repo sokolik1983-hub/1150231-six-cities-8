@@ -13,7 +13,7 @@ export type Offer = {
   id: number,
   images: string[],
   is_favorite: boolean,
-  is_premium: boolean,
+  isPremium: boolean,
   location: Point,
   max_adults: number,
   previewImage: string,
