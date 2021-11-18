@@ -3,19 +3,27 @@ import {useRef, useEffect} from 'react';
 import 'leaflet/dist/leaflet.css';
 import {URL_MARKER_DEFAULT} from '../const';
 import useMap from '../../hooks/useMap/useMap';
-import type {Points, Point} from '../../types/points';
-import {Cities} from '../../types/city';
+import type {Point} from '../../types/points';
+import {State} from '../../types/state';
+import {connect} from 'react-redux';
+// import {points} from '../../fixtures/points';
+// import {Cities} from '../../types/city';
 
-type AppProps = {
-  location: Cities[];
-  points: Points;
-};
+// type AppProps = {
+//   location: Cities[];
+//   points: Points;
+// };
+const mapStateToProps = ({currentCityLocation, points}: State) => ({
+  currentCityLocation,
+  points,
+});
+const connector = connect(mapStateToProps, null);
 
-function Map(props: AppProps): JSX.Element {
-  const {location, points} = props;
+function Map(props: any): JSX.Element {
+  const {currentCityLocation, points} = props;
 
   const mapRef = useRef(null);
-  const map = useMap(mapRef, location);
+  const map = useMap(mapRef, [currentCityLocation]);
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
@@ -28,8 +36,8 @@ function Map(props: AppProps): JSX.Element {
       points?.forEach((point: Point ) => {
         leaflet
           .marker({
-            lat: point.lat,
-            lng: point.lng,
+            lat: point.latitude,
+            lng: point.longitude,
           }, {
             icon: defaultCustomIcon,
           })
@@ -47,4 +55,4 @@ function Map(props: AppProps): JSX.Element {
   );
 }
 
-export default Map;
+export default connector(Map);

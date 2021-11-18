@@ -7,7 +7,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 52.370216,
         'longitude': 4.895168,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Amsterdam',
     },
@@ -41,7 +41,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 52.370216,
         'longitude': 4.895168,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Amsterdam',
     },
@@ -75,7 +75,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 52.370216,
         'longitude': 4.895168,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Amsterdam',
     },
@@ -109,7 +109,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 52.370216,
         'longitude': 4.895168,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Amsterdam',
     },
@@ -144,7 +144,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 48.8534100,
         'longitude': 2.3488000,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Paris',
     },
@@ -178,7 +178,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 48.8534100,
         'longitude': 2.3488000,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Paris',
     },
@@ -212,7 +212,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 48.8534100,
         'longitude': 2.3488000,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Paris',
     },
@@ -246,7 +246,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 48.8534100,
         'longitude': 2.3488000,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Paris',
     },
@@ -280,7 +280,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 48.8534100,
         'longitude': 2.3488000,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Paris',
     },
@@ -315,7 +315,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 50.93333,
         'longitude': 6.95,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Cologne',
     },
@@ -349,7 +349,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 50.93333,
         'longitude': 6.95,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Cologne',
     },
@@ -383,7 +383,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 50.93333,
         'longitude': 6.95,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Cologne',
     },
@@ -418,7 +418,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 50.85045,
         'longitude': 4.34878,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Brussels',
     },
@@ -452,7 +452,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 50.85045,
         'longitude': 4.34878,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Brussels',
     },
@@ -487,7 +487,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 53.57532,
         'longitude': 10.01534,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Hamburg',
     },
@@ -521,7 +521,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 53.57532,
         'longitude': 10.01534,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Hamburg',
     },
@@ -556,7 +556,7 @@ export const offers: Offer[] = [
       'location': {
         'latitude': 50.93333,
         'longitude': 6.95,
-        'zoom': 10,
+        'zoom': 13,
       },
       'name': 'Dusseldorf',
     },

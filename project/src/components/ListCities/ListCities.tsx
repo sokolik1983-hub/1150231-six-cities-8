@@ -1,5 +1,3 @@
-import {Dispatch, SetStateAction} from 'react';
-
 const cities = [
   'Paris',
   'Cologne',
@@ -10,15 +8,16 @@ const cities = [
 ];
 
 type Props = {
-  currentCity: string;
-  setCurrentCity:  Dispatch<SetStateAction<string>>;
+  city: string;
+  onClickCity: any;
 }
 
+
 function ListCities (props: Props): JSX.Element {
-  const {currentCity, setCurrentCity} = props;
+  const {city, onClickCity} = props;
 
   const handleClick = (item:string) => {
-    setCurrentCity(item);
+    onClickCity(item);
   };
   return (
     <div className='tabs'>
@@ -27,7 +26,7 @@ function ListCities (props: Props): JSX.Element {
           {
             cities.map((item) => (
               <li key={item} className='locations__item'>
-                <a onClick={() => handleClick(item)} className={`locations__item-link ${currentCity === item && 'active'} tabs__item`} href='/#'>
+                <a onClick={() => handleClick(item)} className={`locations__item-link ${city === item && 'active'} tabs__item`} href='/#'>
                   <span>{item}</span>
                 </a>
               </li>

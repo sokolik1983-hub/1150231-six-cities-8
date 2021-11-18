@@ -1,7 +1,7 @@
 export type Point = {
-  title: string;
-  lat: number;
-  lng: number;
+  latitude: number;
+  longitude: number;
+  zoom?: number;
 };
 
 export type Points = Point[] | null;

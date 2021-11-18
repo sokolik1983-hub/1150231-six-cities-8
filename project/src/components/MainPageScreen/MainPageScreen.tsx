@@ -1,54 +1,44 @@
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import ListCards from '../ListCards/ListCards';
-import Map from '../Map/Map';
-import {cities} from '../../fixtures/cities';
 import {connect} from 'react-redux';
 import ListCities from '../ListCities/ListCities';
-import {useEffect, useState} from 'react';
+import {Dispatch, useEffect} from 'react';
 import {State} from '../../types/state';
-import {Points} from '../../types/points';
-import {Offer} from '../../types/offer';
-import {Cities} from '../../types/city';
+import {Actions} from '../../types/action';
+import {chooseCity, filterOffersCity, filterPointsCity, getCurrentCityLocation} from '../../store/action';
+import Map from '../Map/Map';
+import {Offers} from '../../types/offer';
 
-const mapStateToProps = ({offers}: State) => ({
+const mapStateToProps = ({offers, city}: State) => ({
   offers,
+  city,
 });
-
-type NewObj = {
-  title: string;
-  lat: number;
-  lng: number;
-}
-
-const connector = connect(mapStateToProps, null);
+const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+  onFilterCity(city: string, offers: Offers) {
+    dispatch(filterOffersCity(city, offers));
+  },
+  onFilterPoints(city: string, offers: Offers) {
+    dispatch(filterPointsCity(city, offers));
+  },
+  onClickCity(city: string) {
+    dispatch(chooseCity({
+      payload: city,
+    }));
+  },
+  onGetLocationCity(city: string, offers: Offers) {
+    dispatch(getCurrentCityLocation(city, offers));
+  },
+});
+const connector = connect(mapStateToProps, mapDispatchToProps);
 
 function MainPageScreen(props: State | null): JSX.Element {
-  const {offers}: any = props; //не разобрался , как типизировать
-
-  const [currentCity, setCurrentCity] = useState(cities[0].title);
-  const [currentOffers, setCurrentOffers] = useState(null);
-  const [location, setLocation] = useState(cities);
-  const [currentPoints, setCurrentPoints] = useState<Points>(null);
+  const {offers, onFilterCity, city, onClickCity, onFilterPoints, onGetLocationCity}: any = props; //не разобрался , как типизировать
 
   useEffect(() => {
-    const filterOffers = offers.filter((obj: Offer) => obj.city.name === currentCity);
-    const currentLocation = cities.filter((item: Cities) => item.title === currentCity);
-    setLocation(currentLocation);
-    setCurrentOffers(filterOffers);
-  }, [currentCity, offers]);
-
-  useEffect(() => {
-    const newArr: Points = [];
-    offers.forEach((item: Offer) => {
-      const newObj: NewObj = {
-        title: item.city.name,
-        lat: item.location.latitude,
-        lng: item.location.longitude,
-      };
-      newArr.push(newObj);
-      setCurrentPoints(newArr);
-    });
-  }, [offers]);
+    onFilterCity(city, offers);
+    onFilterPoints(city, offers);
+    onGetLocationCity(city, offers);
+  }, [city]);
 
   return (
     <>
@@ -93,17 +83,17 @@ function MainPageScreen(props: State | null): JSX.Element {
             </div>
           </div>
         </header>
-        <ListCities currentCity={currentCity} setCurrentCity={setCurrentCity} />
+        <ListCities city={city} onClickCity={onClickCity} />
         <main className='page__main page__main--index'>
           <h1 className='visually-hidden'>Cities</h1>
 
           <div className='cities'>
             <div className='cities__places-container container'>
 
-              <ListCards items={currentOffers} currentCity={currentCity}/>
+              <ListCards items={offers} currentCity={city}/>
               <div className='cities__right-section'>
                 <div className="cities__map">
-                  <Map points={currentPoints} location={location}  />
+                  <Map />
                 </div>
               </div>
             </div>
