@@ -40,6 +40,7 @@ function reducer(state: State = initialState, action: Actions): State {
         if(item.city.name === currentCity) {
           return item.location;
         }
+        return null;
       });
       filterPoints = filterPoints.filter((item) => item && item);
       return {...state, points: filterPoints};
@@ -50,6 +51,7 @@ function reducer(state: State = initialState, action: Actions): State {
         if(item.city.name === currentCity) {
           return item;
         }
+        return null;
       });
       return {...state, currentCityLocation: currentCityLocation?.city.location};
     }

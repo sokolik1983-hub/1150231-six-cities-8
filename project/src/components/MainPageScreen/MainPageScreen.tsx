@@ -9,23 +9,25 @@ import {chooseCity, filterOffersCity, filterPointsCity, getCurrentCityLocation, 
 import Map from '../Map/Map';
 import {Offer} from '../../types/offer';
 
-const mapStateToProps = ({offers, city, listCities}: State) => ({
+const mapStateToProps = ({offers, city, listCities, points, currentCityLocation}: State) => ({
   offers,
   city,
   listCities,
+  points,
+  currentCityLocation,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+  onClickCity(city: string) {
+    dispatch(chooseCity({
+      payload: city,
+    }));
+  },
   onFilterCity(city: string, offers: Offer[]) {
     dispatch(filterOffersCity(city, offers));
   },
   onFilterPoints(city: string, offers: Offer[]) {
     dispatch(filterPointsCity(city, offers));
-  },
-  onClickCity(city: string) {
-    dispatch(chooseCity({
-      payload: city,
-    }));
   },
   onGetLocationCity(city: string, offers: Offer[]) {
     dispatch(getCurrentCityLocation(city, offers));
@@ -40,7 +42,7 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function MainPageScreen(props: PropsFromRedux): JSX.Element {
-  const {offers, onFilterCity, city, onClickCity, onFilterPoints, onGetLocationCity, onGetListCities, listCities} = props;
+  const {offers, onFilterCity, city, onClickCity, onFilterPoints, onGetLocationCity, onGetListCities, listCities, points, currentCityLocation} = props;
 
   useEffect(() => {
     onFilterCity(city, offers);
@@ -102,7 +104,7 @@ function MainPageScreen(props: PropsFromRedux): JSX.Element {
               <ListCards items={offers} currentCity={city}/>
               <div className='cities__right-section'>
                 <div className="cities__map">
-                  <Map />
+                  <Map currentCityLocation={currentCityLocation} points={points}/>
                 </div>
               </div>
             </div>

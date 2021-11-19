@@ -3,21 +3,12 @@ import {useRef, useEffect} from 'react';
 import 'leaflet/dist/leaflet.css';
 import {URL_MARKER_DEFAULT} from '../const';
 import useMap from '../../hooks/useMap/useMap';
-import type {Point} from '../../types/points';
-import {State} from '../../types/state';
-import {connect} from 'react-redux';
-// import {points} from '../../fixtures/points';
-// import {Cities} from '../../types/city';
+import {Point} from '../../types/offer';
 
-// type AppProps = {
-//   location: Cities[];
-//   points: Points;
+// type MapProps = {
+//   currentCityLocation: CityLocation | undefined;
+//   points: Point[];
 // };
-const mapStateToProps = ({currentCityLocation, points}: State) => ({
-  currentCityLocation,
-  points,
-});
-const connector = connect(mapStateToProps, null);
 
 function Map(props: any): JSX.Element {
   const {currentCityLocation, points} = props;
@@ -55,4 +46,4 @@ function Map(props: any): JSX.Element {
   );
 }
 
-export default connector(Map);
+export default Map;

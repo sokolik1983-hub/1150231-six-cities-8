@@ -1,9 +1,3 @@
-export type Offers = {
-  map: (item: any) => JSX.Element;
-  length: number;
-  offers: Offer[];
-}
-
 export type Offer = {
   bedrooms: number,
   city: City,
@@ -12,10 +6,10 @@ export type Offer = {
   host: Host,
   id: number,
   images: string[],
-  is_favorite: boolean,
+  isFavorite: boolean,
   isPremium: boolean,
   location: Point,
-  max_adults: number,
+  maxAdults: number,
   previewImage: string,
   price: number,
   rating: number,
@@ -35,7 +29,7 @@ export type CityLocation = {
 };
 
 export type Points = {
-  points: Point[];
+  points: Point[] | undefined;
 }
 
 export type Point = {
@@ -45,9 +39,9 @@ export type Point = {
 };
 
 export type Host = {
-  avatar_url: string,
+  avatarUrl: string,
   id: number,
-  is_pro: boolean,
+  isPro: boolean,
   name: string,
 };
 

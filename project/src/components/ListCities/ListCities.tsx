@@ -9,7 +9,9 @@ function ListCities (props: Props): JSX.Element {
   const {city, onClickCity, listCities} = props;
 
   const handleClick = (item: string) => {
-    onClickCity(item);
+    if(item !== city) {
+      onClickCity(item);
+    }
   };
   return (
     <div className='tabs'>
