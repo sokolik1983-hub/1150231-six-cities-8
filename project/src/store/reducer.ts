@@ -3,8 +3,7 @@ import {State} from '../types/state';
 import {Offer} from '../types/offer';
 import {Actions, ActionType} from '../types/action';
 
-
-const initialState = {
+const initialState: State = {
   city: 'Paris',
   offers,
   points: [],
@@ -23,6 +22,7 @@ type Props = {
 }
 
 function reducer(state: State = initialState, action: Actions): State {
+
   switch(action.type) {
 
     case ActionType.ChooseCity: {

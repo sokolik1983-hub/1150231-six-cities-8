@@ -44,4 +44,11 @@ export type Host = {
   isPro: boolean,
   name: string,
 };
-
+export type Cities= {
+  city: 'Paris'
+    | 'Amsterdam'
+    | 'Cologne'
+    | 'Brussels'
+    | 'Hamburg'
+    | 'Dusseldorf',
+}

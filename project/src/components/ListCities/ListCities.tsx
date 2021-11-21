@@ -1,40 +1,41 @@
-type Props = {
-  city: string;
-  onClickCity: (city: string) => void;
-  listCities: string[],
-}
+import {Cities} from '../../types/offer';
 
+type Props = {
+  city: Cities;
+  onClickCity: (city: Cities) => void;
+  listCities: Cities[],
+}
 
 function ListCities(props: Props): JSX.Element {
   const {city, onClickCity, listCities} = props;
 
-  const handleClick = (item: string) => {
-    onClickCity(item);
+  /* eslint-disable no-console */
+  console.log('отрисовка');
+  /* eslint-enable no-console */
+
+  const handleClick = (item: Cities) => {
+    if(city === item) {
+      onClickCity(item);
+    }
   };
   return (
-    <div className='tabs'>
-      <section className='locations container'>
-        <ul className='locations__list tabs__list'>
-          {
-            listCities?.map((item: string) =>
-              (city !== item)
-                ?
-                <li key={item} className='locations__item'>
-                  <a onClick={() => handleClick(item)} className='locations__item-link tabs__item' href='/#' >
-                    <span>{item}</span>
-                  </a>
-                </li>
-                :
-                <li key={item} className='locations__item'>
-                  <a className='locations__item-link active tabs__item' href='/#'>
-                    <span>{item}</span>
-                  </a>
-                </li>,
-            )
-          }
-        </ul>
-      </section>
-    </div>
+    listCities &&
+        <div className='tabs'>
+          <section className='locations container'>
+            <ul className='locations__list tabs__list'>
+              {
+                listCities?.map((item: Cities) => (
+                  <li key={`${item}`} className='locations__item'>
+                    <a onClick={() => handleClick(item)} className='locations__item-link tabs__item' href='/#' >
+                      <span>{item}</span>
+                    </a>
+                  </li>
+                ),
+                )
+              }
+            </ul>
+          </section>
+        </div>
   );
 }
 

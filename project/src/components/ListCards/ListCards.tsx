@@ -1,9 +1,10 @@
 import Card from '../Card/card';
 import {Offer} from '../../types/offer';
+import {Cities} from '../../types/offer';
 
 type Props = {
   items: Offer[],
-  currentCity: string,
+  currentCity: Cities,
 }
 
 function ListCards(props: Props): JSX.Element {

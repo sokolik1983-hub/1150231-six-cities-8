@@ -8,6 +8,7 @@ import {Actions} from '../../types/action';
 import {chooseCity, filterOffersCity, filterPointsCity, getCurrentCityLocation, getListCities} from '../../store/action';
 import Map from '../Map/Map';
 import {Offer} from '../../types/offer';
+import {Cities} from '../../types/offer';
 
 const mapStateToProps = ({offers, city, listCities, points, currentCityLocation}: State) => ({
   offers,
@@ -18,18 +19,18 @@ const mapStateToProps = ({offers, city, listCities, points, currentCityLocation}
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
-  onClickCity(city: string) {
+  onClickCity(city: Cities) {
     dispatch(chooseCity({
       payload: city,
     }));
   },
-  onFilterCity(city: string, offers: Offer[]) {
+  onFilterCity(city: Cities, offers: Offer[]) {
     dispatch(filterOffersCity(city, offers));
   },
-  onFilterPoints(city: string, offers: Offer[]) {
+  onFilterPoints(city: Cities, offers: Offer[]) {
     dispatch(filterPointsCity(city, offers));
   },
-  onGetLocationCity(city: string, offers: Offer[]) {
+  onGetLocationCity(city: Cities, offers: Offer[]) {
     dispatch(getCurrentCityLocation(city, offers));
   },
   onGetListCities(offers: Offer[]) {

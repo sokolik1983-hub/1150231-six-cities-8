@@ -1,10 +1,11 @@
 import {Offer} from './offer';
 import {CityLocation} from './offer';
+import {Cities} from "./offer";
 
 export type State = {
-  city: string,
+  city: Cities | any,
   offers: Offer[],
-  points: Offer[], //Не разобрался как типизировать , подтягивал Point[], но в редюсере начинает ругаться
+  points: Offer[],
   currentCityLocation: CityLocation | undefined,
-  listCities: string[],
+  listCities: Cities[],
 }
