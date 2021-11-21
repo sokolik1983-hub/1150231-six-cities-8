@@ -1,3 +1,8 @@
+export type Offers = {
+  offers: Offer[];
+}
+
+
 export type Offer = {
   bedrooms: number,
   city: City,

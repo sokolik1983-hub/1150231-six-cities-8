@@ -1,4 +1,5 @@
 import {Cities} from '../../types/offer';
+import {MouseEvent} from 'react';
 
 type Props = {
   city: Cities;
@@ -6,36 +7,39 @@ type Props = {
   listCities: Cities[],
 }
 
-function ListCities(props: Props): JSX.Element {
+
+function ListCities (props: Props): JSX.Element {
   const {city, onClickCity, listCities} = props;
 
-  /* eslint-disable no-console */
-  console.log('отрисовка');
-  /* eslint-enable no-console */
-
-  const handleClick = (item: Cities) => {
-    if(city === item) {
-      onClickCity(item);
-    }
+  const handleClick = (e: MouseEvent, item: Cities) => {
+    e.preventDefault();
+    onClickCity(item);
   };
   return (
-    listCities &&
-        <div className='tabs'>
-          <section className='locations container'>
-            <ul className='locations__list tabs__list'>
-              {
-                listCities?.map((item: Cities) => (
-                  <li key={`${item}`} className='locations__item'>
-                    <a onClick={() => handleClick(item)} className='locations__item-link tabs__item' href='/#' >
+    <div className='tabs'>
+      <section className='locations container'>
+        <ul className='locations__list tabs__list'>
+          {
+            listCities.map((item: Cities) => (
+              <li key={`${item}`} className='locations__item'>
+                {
+                  (city !== item)
+                    ?
+                    <a onClick={(e) => handleClick(e, item)} className='locations__item-link tabs__item' href='/#'>
                       <span>{item}</span>
                     </a>
-                  </li>
-                ),
-                )
-              }
-            </ul>
-          </section>
-        </div>
+                    :
+                    <a className='locations__item-link active tabs__item' href='/#'>
+                      <span>{item}</span>
+                    </a>
+                }
+              </li>
+            ),
+            )
+          }
+        </ul>
+      </section>
+    </div>
   );
 }
 
