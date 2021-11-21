@@ -3,10 +3,10 @@ import {useRef, useEffect} from 'react';
 import 'leaflet/dist/leaflet.css';
 import {URL_MARKER_DEFAULT} from '../const';
 import useMap from '../../hooks/useMap/useMap';
-import {Offer, CityLocation} from '../../types/offer';
+import {Offer, CityLocation, Offers} from '../../types/offer';
 
 type MapProps = {
-  offers: Offer[];
+  offers: Offers;
   currentCityLocation: CityLocation;
 };
 

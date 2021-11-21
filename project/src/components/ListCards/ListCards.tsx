@@ -1,9 +1,9 @@
 import Card from '../Card/card';
-import {Offer} from '../../types/offer';
+import {Offers, Offer} from '../../types/offer';
 import {Cities} from '../../types/offer';
 
 type Props = {
-  items: Offer[],
+  items: Offers,
   currentCity: Cities,
 }
 

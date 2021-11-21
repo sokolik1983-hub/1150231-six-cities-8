@@ -1,6 +1,6 @@
 import {offers} from '../fixtures/currentOffers';
 import {State} from '../types/state';
-import {Offer} from '../types/offer';
+import {Offers, Offer} from '../types/offer';
 import {Actions, ActionType} from '../types/action';
 
 const initialState: State = {
@@ -18,7 +18,7 @@ const initialState: State = {
 type Props = {
   city?: string;
   currentCity?: string;
-  currentOffers: Offer[];
+  currentOffers: Offers;
 }
 
 function reducer(state: State = initialState, action: Actions): State {
@@ -47,12 +47,7 @@ function reducer(state: State = initialState, action: Actions): State {
     }
     case ActionType.GetListCities: {
       const {currentOffers} = action.payload;
-      /* eslint-disable no-console */
-      console.log('currentOffers',currentOffers);
-      /* eslint-enable no-console */
-
       const newArrCities = currentOffers.map((item: Offer) => (item.city.name));
-
       const uniqArrCities = Array.from(new Set([...newArrCities]));
 
       return {...state, listCities: uniqArrCities};

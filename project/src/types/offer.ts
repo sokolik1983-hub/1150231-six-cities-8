@@ -1,7 +1,4 @@
-export type Offers = {
-  offers: Offer[];
-}
-
+export type Offers = Offer[];
 
 export type Offer = {
   bedrooms: number,
