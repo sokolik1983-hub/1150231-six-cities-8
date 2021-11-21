@@ -36,27 +36,21 @@ function reducer(state: State = initialState, action: Actions): State {
     }
     case ActionType.FilterPointsCity: {
       const {currentCity, currentOffers}: Props = action.payload;
-      let filterPoints = currentOffers.map((item: Offer) => {
-        if(item.city.name === currentCity) {
-          return item.location;
-        }
-        return null;
-      });
-      filterPoints = filterPoints.filter((item) => item && item);
+      const filterPoints = currentOffers.filter((item: Offer) => item.city.name === currentCity);
+
       return {...state, points: filterPoints};
     }
     case ActionType.GetCurrentCityLocation: {
       const {currentCity, currentOffers}: Props = action.payload;
-      const currentCityLocation = currentOffers.find((item: Offer) => {
-        if(item.city.name === currentCity) {
-          return item;
-        }
-        return null;
-      });
+      const currentCityLocation = currentOffers.find((item: Offer) =>  item.city.name === currentCity);
       return {...state, currentCityLocation: currentCityLocation?.city.location};
     }
     case ActionType.GetListCities: {
       const {currentOffers} = action.payload;
+      /* eslint-disable no-console */
+      console.log('currentOffers',currentOffers);
+      /* eslint-enable no-console */
+
       const newArrCities = currentOffers.map((item: Offer) => (item.city.name));
 
       const uniqArrCities = Array.from(new Set([...newArrCities]));

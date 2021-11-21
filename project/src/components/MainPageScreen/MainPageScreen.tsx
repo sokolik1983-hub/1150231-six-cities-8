@@ -42,13 +42,17 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function MainPageScreen(props: PropsFromRedux): JSX.Element {
-  const {offers, onFilterCity, city, onClickCity, onFilterPoints, onGetLocationCity, onGetListCities, listCities, points, currentCityLocation} = props;
+  const {offers, onFilterCity, city, onClickCity, onFilterPoints, onGetLocationCity, onGetListCities, listCities, currentCityLocation} = props;
 
-  useEffect(() => {
+  const getData = () => {
     onFilterCity(city, offers);
     onFilterPoints(city, offers);
     onGetLocationCity(city, offers);
     onGetListCities(offers);
+  };
+
+  useEffect(() => {
+    getData();
   }, [city]);
 
   return (
@@ -104,7 +108,9 @@ function MainPageScreen(props: PropsFromRedux): JSX.Element {
               <ListCards items={offers} currentCity={city}/>
               <div className='cities__right-section'>
                 <div className="cities__map">
-                  <Map currentCityLocation={currentCityLocation} points={points}/>
+                  {
+                    currentCityLocation && <Map currentCityLocation={currentCityLocation} offers={offers}/>
+                  }
                 </div>
               </div>
             </div>

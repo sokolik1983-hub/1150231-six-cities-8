@@ -3,16 +3,15 @@ import {useRef, useEffect} from 'react';
 import 'leaflet/dist/leaflet.css';
 import {URL_MARKER_DEFAULT} from '../const';
 import useMap from '../../hooks/useMap/useMap';
-import {Point} from '../../types/offer';
+import {Offer, CityLocation} from '../../types/offer';
 
-// type MapProps = {
-//   currentCityLocation: CityLocation | undefined;
-//   points: Point[];
-// };
+type MapProps = {
+  offers: Offer[];
+  currentCityLocation: CityLocation;
+};
 
-function Map(props: any): JSX.Element {
-  const {currentCityLocation, points} = props;
-
+function Map(props: MapProps): JSX.Element {
+  const {currentCityLocation, offers} = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, [currentCityLocation]);
 
@@ -24,18 +23,18 @@ function Map(props: any): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      points?.forEach((point: Point ) => {
+      offers?.forEach((offer: Offer ) => {
         leaflet
           .marker({
-            lat: point.latitude,
-            lng: point.longitude,
+            lat: offer.location.latitude,
+            lng: offer.location.longitude,
           }, {
             icon: defaultCustomIcon,
           })
           .addTo(map);
       });
     }
-  }, [map, points, defaultCustomIcon]);
+  }, [map, offers, defaultCustomIcon]);
 
   return (
     <div

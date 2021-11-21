@@ -5,26 +5,31 @@ type Props = {
 }
 
 
-function ListCities (props: Props): JSX.Element {
+function ListCities(props: Props): JSX.Element {
   const {city, onClickCity, listCities} = props;
 
   const handleClick = (item: string) => {
-    if(item !== city) {
-      onClickCity(item);
-    }
+    onClickCity(item);
   };
   return (
     <div className='tabs'>
       <section className='locations container'>
         <ul className='locations__list tabs__list'>
           {
-            listCities?.map((item: string) => (
-              <li key={item} className='locations__item'>
-                <a onClick={() => handleClick(item)} className={`locations__item-link ${city === item && 'active'} tabs__item`} href='/#'>
-                  <span>{item}</span>
-                </a>
-              </li>
-            ),
+            listCities?.map((item: string) =>
+              (city !== item)
+                ?
+                <li key={item} className='locations__item'>
+                  <a onClick={() => handleClick(item)} className='locations__item-link tabs__item' href='/#' >
+                    <span>{item}</span>
+                  </a>
+                </li>
+                :
+                <li key={item} className='locations__item'>
+                  <a className='locations__item-link active tabs__item' href='/#'>
+                    <span>{item}</span>
+                  </a>
+                </li>,
             )
           }
         </ul>
