@@ -9,20 +9,11 @@ export const chooseCity = createAction(
     },
   } as const),
 );
-
 export const filterOffersCity = createAction(
   ActionType.FilterOffersCity,
   (city, currentOffers) => ({
     payload: {
       city,
-      currentOffers,
-    },
-  } as const),
-);
-export const filterPointsCity = createAction(
-  ActionType.FilterPointsCity,
-  (currentOffers) => ({
-    payload: {
       currentOffers,
     },
   } as const),

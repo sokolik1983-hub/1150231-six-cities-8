@@ -5,7 +5,7 @@ import ListCities from '../ListCities/ListCities';
 import {Dispatch, useEffect} from 'react';
 import {State} from '../../types/state';
 import {Actions} from '../../types/action';
-import {chooseCity, filterOffersCity, filterPointsCity, getCurrentCityLocation, getListCities} from '../../store/action';
+import {chooseCity, filterOffersCity, getCurrentCityLocation, getListCities} from '../../store/action';
 import Map from '../Map/Map';
 import {Cities, Offers} from '../../types/offer';
 
@@ -26,10 +26,6 @@ const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
   onGetListCities(offers: Offers) {
     dispatch(getListCities(offers));
   },
-  onFilterPoints(city: Cities, offers: Offers) {
-    dispatch(filterPointsCity(offers));
-  },
-
   onFilterCity(city: Cities, offers: Offers) {
     dispatch(filterOffersCity(city, offers));
   },
@@ -43,14 +39,13 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function MainPageScreen(props: PropsFromRedux): JSX.Element {
-  const {offers, onFilterCity, city, onClickCity, onFilterPoints, onGetLocationCity, onGetListCities, currentCityLocation, listCities, currentOffers} = props;
+  const {offers, onFilterCity, city, onClickCity, onGetLocationCity, onGetListCities, currentCityLocation, listCities, currentOffers} = props;
 
   useEffect(() => {
-    onFilterPoints(city, offers);
     onGetLocationCity(city, offers);
     onGetListCities(offers);
     onFilterCity(city, offers);
-  }, [city, offers, onGetLocationCity, onFilterPoints, onGetListCities, onFilterCity]); //с getData не получилось, слишком много перерендеров, в таком написании - предупреждений нет
+  }, [city, offers, onGetLocationCity, onGetListCities, onFilterCity]); //с getData не получилось, слишком много перерендеров, в таком написании - предупреждений нет
 
   return (
     <>

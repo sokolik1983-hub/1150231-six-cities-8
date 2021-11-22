@@ -1,4 +1,4 @@
-import {chooseCity, filterOffersCity, filterPointsCity, getCurrentCityLocation, getListCities} from '../store/action';
+import {chooseCity, filterOffersCity, getCurrentCityLocation, getListCities} from '../store/action';
 import {Offers} from './offer';
 
 
@@ -27,12 +27,6 @@ export type FilterOfferCity = {
     currentOffers: Offers;
   }
 };
-export type FilterPointsCity = {
-  type: ActionType.FilterPointsCity;
-  payload: {
-    currentOffers: Offers;
-  }
-};
 export type GetListCities = {
   type: ActionType.GetListCities;
   payload: {
@@ -42,6 +36,5 @@ export type GetListCities = {
 export type Actions =
   | ReturnType<typeof chooseCity>
   | ReturnType<typeof filterOffersCity>
-  | ReturnType<typeof filterPointsCity>
   | ReturnType<typeof getCurrentCityLocation>
   | ReturnType<typeof getListCities>;
