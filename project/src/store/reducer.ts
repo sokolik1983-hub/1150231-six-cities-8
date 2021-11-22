@@ -7,6 +7,7 @@ const initialState: State = {
   city: 'Paris',
   offers,
   points: [],
+  currentOffers: [],
   currentCityLocation: {
     'latitude': 52.370216,
     'longitude': 4.895168,
@@ -27,16 +28,16 @@ function reducer(state: State = initialState, action: Actions): State {
 
     case ActionType.ChooseCity: {
       const {city} = action.payload;
-      return {...initialState, city: city.payload};
+      return {...initialState, city: city};
     }
     case ActionType.FilterOffersCity: {
       const {city, currentOffers}: Props = action.payload;
       const filterOffers = currentOffers.filter((obj: Offer) => obj.city.name === city);
-      return {...state, offers: filterOffers};
+      return {...state, currentOffers: filterOffers};
     }
     case ActionType.FilterPointsCity: {
-      const {currentCity, currentOffers}: Props = action.payload;
-      const filterPoints = currentOffers.filter((item: Offer) => item.city.name === currentCity);
+      const {currentOffers}: Props = action.payload;
+      const filterPoints = currentOffers.filter((item: Offer) => item.city.name);
 
       return {...state, points: filterPoints};
     }

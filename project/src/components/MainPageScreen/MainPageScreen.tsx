@@ -10,31 +10,31 @@ import Map from '../Map/Map';
 import {Cities, Offers} from '../../types/offer';
 
 
-const mapStateToProps = ({offers, city, listCities, points, currentCityLocation}: State) => ({
+const mapStateToProps = ({offers, city, listCities, points, currentCityLocation, currentOffers}: State) => ({
   offers,
   city,
   listCities,
   points,
   currentCityLocation,
+  currentOffers,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
   onClickCity(city: Cities) {
-    dispatch(chooseCity({
-      payload: city,
-    }));
-  },
-  onFilterCity(city: Cities, offers: Offers) {
-    dispatch(filterOffersCity(city, offers));
-  },
-  onFilterPoints(city: Cities, offers: Offers) {
-    dispatch(filterPointsCity(city, offers));
-  },
-  onGetLocationCity(city: Cities, offers: Offers) {
-    dispatch(getCurrentCityLocation(city, offers));
+    dispatch(chooseCity(city));
   },
   onGetListCities(offers: Offers) {
     dispatch(getListCities(offers));
+  },
+  onFilterPoints(city: Cities, offers: Offers) {
+    dispatch(filterPointsCity(offers));
+  },
+
+  onFilterCity(city: Cities, offers: Offers) {
+    dispatch(filterOffersCity(city, offers));
+  },
+  onGetLocationCity(city: Cities, offers: Offers) {
+    dispatch(getCurrentCityLocation(city, offers));
   },
 });
 
@@ -43,17 +43,13 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function MainPageScreen(props: PropsFromRedux): JSX.Element {
-  const {offers, onFilterCity, city, onClickCity, onFilterPoints, onGetLocationCity, onGetListCities, listCities, currentCityLocation} = props;
+  const {offers, onFilterCity, city, onClickCity, onFilterPoints, onGetLocationCity, onGetListCities, currentCityLocation, listCities, currentOffers} = props;
 
-  const getData = () => {
+  useEffect(() => {
     onFilterCity(city, offers);
     onFilterPoints(city, offers);
     onGetLocationCity(city, offers);
     onGetListCities(offers);
-  };
-
-  useEffect(() => {
-    getData();
   }, [city]);
 
   return (
@@ -106,7 +102,7 @@ function MainPageScreen(props: PropsFromRedux): JSX.Element {
           <div className='cities'>
             <div className='cities__places-container container'>
 
-              <ListCards items={offers} currentCity={city}/>
+              <ListCards items={currentOffers} currentCity={city}/>
               <div className='cities__right-section'>
                 <div className="cities__map">
                   {

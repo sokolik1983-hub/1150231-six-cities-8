@@ -24,13 +24,12 @@ export type FilterOfferCity = {
   type: ActionType.FilterOffersCity;
   payload: {
     city: string;
-    offers: Offers;
+    currentOffers: Offers;
   }
 };
 export type FilterPointsCity = {
   type: ActionType.FilterPointsCity;
   payload: {
-    currentCity: string;
     currentOffers: Offers;
   }
 };
