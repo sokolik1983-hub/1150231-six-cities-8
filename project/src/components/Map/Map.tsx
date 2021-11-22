@@ -23,7 +23,7 @@ function Map(props: MapProps): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      offers?.forEach((offer: Offer ) => {
+      offers.forEach((offer: Offer ) => {
         leaflet
           .marker({
             lat: offer.location.latitude,

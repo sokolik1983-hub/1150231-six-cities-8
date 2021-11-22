@@ -46,11 +46,11 @@ function MainPageScreen(props: PropsFromRedux): JSX.Element {
   const {offers, onFilterCity, city, onClickCity, onFilterPoints, onGetLocationCity, onGetListCities, currentCityLocation, listCities, currentOffers} = props;
 
   useEffect(() => {
-    onFilterCity(city, offers);
     onFilterPoints(city, offers);
     onGetLocationCity(city, offers);
     onGetListCities(offers);
-  }, [city]);
+    onFilterCity(city, offers);
+  }, [city, offers, onGetLocationCity, onFilterPoints, onGetListCities, onFilterCity]); //с getData не получилось, слишком много перерендеров, в таком написании - предупреждений нет
 
   return (
     <>

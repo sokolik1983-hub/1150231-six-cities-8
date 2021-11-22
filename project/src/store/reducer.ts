@@ -25,7 +25,6 @@ type Props = {
 function reducer(state: State = initialState, action: Actions): State {
 
   switch(action.type) {
-
     case ActionType.ChooseCity: {
       const {city} = action.payload;
       return {...initialState, city: city};
@@ -53,7 +52,6 @@ function reducer(state: State = initialState, action: Actions): State {
 
       return {...state, listCities: uniqArrCities};
     }
-
     default: return state;
   }
 }
