@@ -1,6 +1,5 @@
 import {offers} from '../fixtures/currentOffers';
 import {State} from '../types/state';
-import {Offers, Offer} from '../types/offer';
 import {Actions, ActionType} from '../types/action';
 
 const initialState: State = {
@@ -16,12 +15,6 @@ const initialState: State = {
   listCities: [],
 };
 
-type Props = {
-  city?: string;
-  currentCity?: string;
-  currentOffers: Offers;
-}
-
 function reducer(state: State = initialState, action: Actions): State {
 
   switch(action.type) {
@@ -29,21 +22,13 @@ function reducer(state: State = initialState, action: Actions): State {
       return {...initialState, city: action.payload.city};
     }
     case ActionType.FilterOffersCity: {
-      const {city, currentOffers}: Props = action.payload;
-      const filterOffers = currentOffers.filter((obj: Offer) => obj.city.name === city);
-      return {...state, currentOffers: filterOffers};
+      return {...state, currentOffers: action.payload.currentOffers};
     }
     case ActionType.GetCurrentCityLocation: {
-      const {currentCity, currentOffers}: Props = action.payload;
-      const currentCityLocation = currentOffers.find((item: Offer) =>  item.city.name === currentCity);
-      return {...state, currentCityLocation: currentCityLocation?.city.location};
+      return {...state, currentCityLocation: action.payload.cityLocation};
     }
     case ActionType.GetListCities: {
-      const {currentOffers} = action.payload;
-      const newArrCities = currentOffers.map((item: Offer) => (item.city.name));
-      const uniqArrCities = newArrCities.filter((value: string, index: number) => newArrCities.indexOf(value) === index );
-
-      return {...state, listCities: uniqArrCities};
+      return {...state, listCities: action.payload.uniqArrCities};
     }
     default: return state;
   }

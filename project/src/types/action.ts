@@ -1,5 +1,5 @@
 import {chooseCity, filterOffersCity, getCurrentCityLocation, getListCities} from '../store/action';
-import {Offers} from './offer';
+import {Offers, Point} from './offer';
 
 
 export enum ActionType {
@@ -16,21 +16,19 @@ export type ChooseCityAction = {
 export type GetCurrentCityLocation = {
   type: ActionType.GetCurrentCityLocation;
   payload: {
-    currentCity: string;
-    currentOffers: Offers;
+    currentCityLocation: Point;
   }
 };
 export type FilterOfferCity = {
   type: ActionType.FilterOffersCity;
   payload: {
-    city: string;
     currentOffers: Offers;
   }
 };
 export type GetListCities = {
   type: ActionType.GetListCities;
   payload: {
-    currentOffers: Offers;
+    uniqArrCities: string[];
   }
 };
 export type Actions =

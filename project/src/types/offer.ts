@@ -31,7 +31,7 @@ export type CityLocation = {
 };
 
 export type Points = {
-  points: Point[] | undefined;
+  points?: Point[];
 }
 
 export type Point = {

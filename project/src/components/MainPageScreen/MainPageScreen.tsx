@@ -7,7 +7,7 @@ import {State} from '../../types/state';
 import {Actions} from '../../types/action';
 import {chooseCity, filterOffersCity, getCurrentCityLocation, getListCities} from '../../store/action';
 import Map from '../Map/Map';
-import {Cities, Offers} from '../../types/offer';
+import {Cities, Offer, Offers, Point} from '../../types/offer';
 
 
 const mapStateToProps = ({offers, city, listCities, points, currentCityLocation, currentOffers}: State) => ({
@@ -23,14 +23,14 @@ const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
   onClickCity(city: Cities) {
     dispatch(chooseCity(city));
   },
-  onGetListCities(offers: Offers) {
-    dispatch(getListCities(offers));
+  onGetListCities(uniqArrCities: string[]) {
+    dispatch(getListCities(uniqArrCities));
   },
-  onFilterCity(city: Cities, offers: Offers) {
-    dispatch(filterOffersCity(city, offers));
+  onFilterCity( offers: Offers) {
+    dispatch(filterOffersCity(offers));
   },
-  onGetLocationCity(city: Cities, offers: Offers) {
-    dispatch(getCurrentCityLocation(city, offers));
+  onGetLocationCity(point?: Point) {
+    dispatch(getCurrentCityLocation(point));
   },
 });
 
@@ -40,12 +40,17 @@ type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function MainPageScreen(props: PropsFromRedux): JSX.Element {
   const {offers, onFilterCity, city, onClickCity, onGetLocationCity, onGetListCities, currentCityLocation, listCities, currentOffers} = props;
-
   useEffect(() => {
-    onGetLocationCity(city, offers);
-    onGetListCities(offers);
-    onFilterCity(city, offers);
-  }, [city, offers, onGetLocationCity, onGetListCities, onFilterCity]); //с getData не получилось, слишком много перерендеров, в таком написании - предупреждений нет
+    const filterOffers: Offers = offers.filter((obj: Offer) => obj.city.name === city);
+    onFilterCity(filterOffers);
+  }, [city, offers, onFilterCity]);
+  useEffect(() => {
+    const cityLocation = currentOffers.find((item: Offer) =>  item.city.name === city);
+    onGetLocationCity(cityLocation?.city.location);
+    const newArrCities = offers.map((item: Offer) => (item.city.name));
+    const uniqArrCities = newArrCities.filter((value: string, index: number) => newArrCities.indexOf(value) === index );
+    onGetListCities(uniqArrCities);
+  }, [city, offers, currentOffers, onGetListCities, onGetLocationCity, onFilterCity]); //с getData не получилось, слишком много перерендеров, в таком написании - предупреждений нет
 
   return (
     <>
