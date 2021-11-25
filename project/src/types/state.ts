@@ -9,4 +9,5 @@ export type State = {
   points: Offers,
   currentCityLocation: CityLocation | undefined,
   listCities: Cities[],
+  loadOffers: Offers,
 }

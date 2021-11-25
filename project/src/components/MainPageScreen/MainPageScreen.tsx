@@ -5,18 +5,25 @@ import ListCities from '../ListCities/ListCities';
 import {Dispatch, useEffect} from 'react';
 import {State} from '../../types/state';
 import {Actions} from '../../types/action';
-import {chooseCity, filterOffersCity, getCurrentCityLocation, getListCities} from '../../store/action';
+import {
+  chooseCity,
+  filterOffersCity,
+  getCurrentCityLocation,
+  getListCities,
+  loadCurrentOffers
+} from '../../store/action';
 import Map from '../Map/Map';
 import {Cities, Offer, Offers, Point} from '../../types/offer';
 
 
-const mapStateToProps = ({offers, city, listCities, points, currentCityLocation, currentOffers}: State) => ({
+const mapStateToProps = ({offers, city, listCities, points, currentCityLocation, currentOffers, loadOffers}: State) => ({
   offers,
   city,
   listCities,
   points,
   currentCityLocation,
   currentOffers,
+  loadOffers,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
@@ -32,6 +39,9 @@ const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
   onGetLocationCity(point?: Point) {
     dispatch(getCurrentCityLocation(point));
   },
+  onFetchOffer(loadOffers:Offers) {
+    dispatch(loadCurrentOffers(loadOffers));
+  },
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -39,12 +49,16 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function MainPageScreen(props: PropsFromRedux): JSX.Element {
-  const {offers, onFilterCity, city, onClickCity, onGetLocationCity, onGetListCities, currentCityLocation, listCities, currentOffers} = props;
+  /* eslint-disable no-console */
+  console.log('props',props);
+  /* eslint-enable no-console */
+  const {offers, onFilterCity, city, onClickCity, onGetLocationCity, onGetListCities, currentCityLocation, listCities, currentOffers, onFetchOffer, loadOffers} = props;
   useEffect(() => {
     const filterOffers: Offers = offers.filter((obj: Offer) => obj.city.name === city);
     onFilterCity(filterOffers);
   }, [city, offers, onFilterCity]);
   useEffect(() => {
+    onFetchOffer(loadOffers);
     const cityLocation = currentOffers.find((item: Offer) =>  item.city.name === city);
     onGetLocationCity(cityLocation?.city.location);
     const newArrCities = offers.map((item: Offer) => (item.city.name));

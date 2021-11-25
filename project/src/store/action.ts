@@ -1,5 +1,6 @@
 import {ActionType} from '../types/action';
 import {createAction} from '@reduxjs/toolkit';
+import {AuthorizationStatus} from '../const';
 
 export const chooseCity = createAction(
   ActionType.ChooseCity,
@@ -32,4 +33,16 @@ export const getListCities = createAction(
       uniqArrCities,
     },
   } as const),
+);
+export const loadCurrentOffers = createAction(
+  ActionType.LoadCurrentOffers,
+  (loadOffers) => ({
+    payload: loadOffers,
+  } as const),
+);
+export const requireAuthorization = createAction(
+  ActionType.RequireAuthorization,
+  (authStatus: AuthorizationStatus) => ({
+    payload: authStatus,
+  }),
 );

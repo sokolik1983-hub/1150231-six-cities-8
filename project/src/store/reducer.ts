@@ -1,6 +1,7 @@
 import {offers} from '../fixtures/currentOffers';
 import {State} from '../types/state';
 import {Actions, ActionType} from '../types/action';
+import camelcaseKeys from 'camelcase-keys';
 
 const initialState: State = {
   city: 'Paris',
@@ -13,6 +14,7 @@ const initialState: State = {
     'zoom': 13,
   },
   listCities: [],
+  loadOffers: [],
 };
 
 function reducer(state: State = initialState, action: Actions): State {
@@ -30,6 +32,17 @@ function reducer(state: State = initialState, action: Actions): State {
     case ActionType.GetListCities: {
       return {...state, listCities: action.payload.uniqArrCities};
     }
+    case ActionType.LoadCurrentOffers: {
+      /* eslint-disable no-console */
+      console.log('loadOffers',action.payload);
+      /* eslint-enable no-console */
+      return {...state, loadOffers: camelcaseKeys(action.payload)};
+    }
+    // case ActionType.RequireAuthorization:
+    //   return {
+    //     ...state,
+    //     authorizationStatus: action.payload,
+    //   };
     default: return state;
   }
 }
