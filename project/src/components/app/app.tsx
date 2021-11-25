@@ -6,7 +6,7 @@ function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/' exact render={() => <MainPageScreen items={cards} />} />
+        <Route path='/' exact render={() => <MainPageScreen />} />
         <Route path='/login' exact component={ LoginPageScreen } />
         <PrivateRoute component={() => <FavoritesPageScreen items={cards}  /> }  authorizationStatus path='/favorites' exact />
         <Route path='/offer/:id' exact component={ RoomPageScreen } />

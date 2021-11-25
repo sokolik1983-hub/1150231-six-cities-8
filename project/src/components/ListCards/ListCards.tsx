@@ -1,15 +1,19 @@
-import { BaseCard } from '../../types/cardProps';
 import Card from '../Card/card';
+import {Offers, Offer} from '../../types/offer';
+import {Cities} from '../../types/offer';
 
-interface Props {
-  items: BaseCard[]
+type Props = {
+  items: Offers,
+  currentCity: Cities,
 }
 
-function ListCards({items} : Props): JSX.Element {
+function ListCards(props: Props): JSX.Element {
+  const {items, currentCity} = props;
+
   return (
     <section className='cities__places places'>
       <h2 className='visually-hidden'>Places</h2>
-      <b className='places__found'>{items?.length ?? 0} places to stay in Amsterdam</b>
+      <b className='places__found'>{items.length ?? 0} places to stay in {currentCity}</b>
       <form className='places__sorting' action='#' method='get'>
         <span className='places__sorting-caption'>Sort by</span>
         <span className='places__sorting-type' tabIndex={0}>Popular<svg className='places__sorting-arrow' width='7' height='4'><use xlinkHref='#icon-arrow-select'></use></svg></span>
@@ -22,7 +26,7 @@ function ListCards({items} : Props): JSX.Element {
       </form>
       <div className='cities__places-list places__list tabs__content'>
         {
-          items?.map((item) => (
+          items.map((item: Offer) => (
             <Card key={`product-card-${item.id}`} {...item} />
           ))
         }

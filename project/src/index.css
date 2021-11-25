@@ -18,3 +18,6 @@
 .page404__wrap a:hover {
   color: lightblue;
 }
+.locations__item-link.active {
+  text-shadow:1px 0 0,.5px 0 0,-1px 0 0
+}

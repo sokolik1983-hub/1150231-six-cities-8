@@ -1,15 +1,57 @@
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import ListCards from '../ListCards/ListCards';
-import { BaseCard } from 'types/cardProps';
+import {connect, ConnectedProps} from 'react-redux';
+import ListCities from '../ListCities/ListCities';
+import {Dispatch, useEffect} from 'react';
+import {State} from '../../types/state';
+import {Actions} from '../../types/action';
+import {chooseCity, filterOffersCity, getCurrentCityLocation, getListCities} from '../../store/action';
 import Map from '../Map/Map';
-import {city} from '../../fixtures/city';
-import {points} from '../../fixtures/points';
+import {Cities, Offer, Offers, Point} from '../../types/offer';
 
-interface Props {
-  items: BaseCard[]
-}
 
-function MainPageScreen({ items }: Props): JSX.Element {
+const mapStateToProps = ({offers, city, listCities, points, currentCityLocation, currentOffers}: State) => ({
+  offers,
+  city,
+  listCities,
+  points,
+  currentCityLocation,
+  currentOffers,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
+  onClickCity(city: Cities) {
+    dispatch(chooseCity(city));
+  },
+  onGetListCities(uniqArrCities: string[]) {
+    dispatch(getListCities(uniqArrCities));
+  },
+  onFilterCity( offers: Offers) {
+    dispatch(filterOffersCity(offers));
+  },
+  onGetLocationCity(point?: Point) {
+    dispatch(getCurrentCityLocation(point));
+  },
+});
+
+const connector = connect(mapStateToProps, mapDispatchToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function MainPageScreen(props: PropsFromRedux): JSX.Element {
+  const {offers, onFilterCity, city, onClickCity, onGetLocationCity, onGetListCities, currentCityLocation, listCities, currentOffers} = props;
+  useEffect(() => {
+    const filterOffers: Offers = offers.filter((obj: Offer) => obj.city.name === city);
+    onFilterCity(filterOffers);
+  }, [city, offers, onFilterCity]);
+  useEffect(() => {
+    const cityLocation = currentOffers.find((item: Offer) =>  item.city.name === city);
+    onGetLocationCity(cityLocation?.city.location);
+    const newArrCities = offers.map((item: Offer) => (item.city.name));
+    const uniqArrCities = newArrCities.filter((value: string, index: number) => newArrCities.indexOf(value) === index );
+    onGetListCities(uniqArrCities);
+  }, [city, offers, currentOffers, onGetListCities, onGetLocationCity, onFilterCity]); //с getData не получилось, слишком много перерендеров, в таком написании - предупреждений нет
+
   return (
     <>
       <div style={{display: 'none'}}>
@@ -53,52 +95,19 @@ function MainPageScreen({ items }: Props): JSX.Element {
             </div>
           </div>
         </header>
-
+        <ListCities city={city} onClickCity={onClickCity} listCities={listCities}/>
         <main className='page__main page__main--index'>
           <h1 className='visually-hidden'>Cities</h1>
-          <div className='tabs'>
-            <section className='locations container'>
-              <ul className='locations__list tabs__list'>
-                <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='/#'>
-                    <span>Paris</span>
-                  </a>
-                </li>
-                <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='/#'>
-                    <span>Cologne</span>
-                  </a>
-                </li>
-                <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='/#'>
-                    <span>Brussels</span>
-                  </a>
-                </li>
-                <li className='locations__item'>
-                  <a href='/#' className='locations__item-link tabs__item tabs__item--active'>
-                    <span>Amsterdam</span>
-                  </a>
-                </li>
-                <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='/#'>
-                    <span>Hamburg</span>
-                  </a>
-                </li>
-                <li className='locations__item'>
-                  <a className='locations__item-link tabs__item' href='/#'>
-                    <span>Dusseldorf</span>
-                  </a>
-                </li>
-              </ul>
-            </section>
-          </div>
+
           <div className='cities'>
             <div className='cities__places-container container'>
 
-              <ListCards items={items}/>
+              <ListCards items={currentOffers} currentCity={city}/>
               <div className='cities__right-section'>
                 <div className="cities__map">
-                  <Map points={points} city={city}  />
+                  {
+                    currentCityLocation && <Map currentCityLocation={currentCityLocation} offers={offers}/>
+                  }
                 </div>
               </div>
             </div>
@@ -108,4 +117,4 @@ function MainPageScreen({ items }: Props): JSX.Element {
     </>
   );
 }
-export default MainPageScreen;
+export default connector(MainPageScreen);

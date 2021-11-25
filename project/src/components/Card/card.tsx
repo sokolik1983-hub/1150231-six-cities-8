@@ -1,11 +1,11 @@
 import { useHistory, Link } from 'react-router-dom';
-import { BaseCard } from 'types/cardProps';
 import { useState } from 'react';
+import {Offer} from '../../types/offer';
 
-function Card(props : BaseCard): JSX.Element {
+function Card(props : Offer): JSX.Element {
   const [activeCard, setActiveCard] = useState(-1);
 
-  const { id, type, price, title, isPremium, src } = props;
+  const { id, type, price, title, isPremium, previewImage } = props;
 
   const history = useHistory();
 
@@ -21,7 +21,7 @@ function Card(props : BaseCard): JSX.Element {
       {Boolean(isPremium) && <div className='place-card__mark'><span>Premium</span></div>}
       <div className='cities__image-wrapper place-card__image-wrapper'>
         <Link to={`/offer/${id}`}>
-          <img className='place-card__image' src={src} width='260' height='200' alt='' />
+          <img className='place-card__image' src={previewImage} width='260' height='200' alt='' />
         </Link>
       </div>
       <div className='place-card__info'>
@@ -32,14 +32,14 @@ function Card(props : BaseCard): JSX.Element {
           </div>
           <button className='place-card__bookmark-button button' type='button'>
             <svg className='place-card__bookmark-icon' width='18' height='19'>
-              <use xlinkHref='#icon-bookmark'></use>
+              <use xlinkHref='#icon-bookmark'/>
             </svg>
             <span className='visually-hidden'>To bookmarks{id}</span>
           </button>
         </div>
         <div className='place-card__rating rating'>
           <div className='place-card__stars rating__stars'>
-            <span style={{width: '80%'}}></span>
+            <span style={{width: '80%'}}/>
             <span className='visually-hidden'>Rating</span>
           </div>
         </div>

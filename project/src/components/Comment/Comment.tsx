@@ -12,8 +12,8 @@ function Comment(): JSX.Element {
   /* eslint-enable no-console */
   const handleStars = (e: SyntheticEvent<EventTarget>) => {
     const element = e.currentTarget as HTMLInputElement;
-    const value = Number(element.getAttribute('value'));
-    setStars(value);
+    const value: string = element.value;
+    setStars(+value);
   };
 
   const handleText = (e: SyntheticEvent<EventTarget>) => {
@@ -37,7 +37,7 @@ function Comment(): JSX.Element {
         <input onClick={handleStars} className='form__rating-input visually-hidden' name='rating' value='2' id='2-stars' type='radio' /><label htmlFor='2-stars' className='reviews__rating-label form__rating-label' title='badly'><svg className='form__star-image' width='37' height='33'><use xlinkHref='#icon-star'></use></svg></label>
         <input onClick={handleStars} className='form__rating-input visually-hidden' name='rating' value='1' id='1-star' type='radio' /><label htmlFor='1-star' className='reviews__rating-label form__rating-label' title='terribly'><svg className='form__star-image' width='37' height='33'><use xlinkHref='#icon-star'></use></svg></label>
       </div>
-      <textarea onChange={handleText} className='reviews__textarea form__textarea' id='review' name='review' placeholder='Tell how was your stay, what you like and what can be improved' value={text}></textarea>
+      <textarea onChange={handleText} className='reviews__textarea form__textarea' id='review' name='review' placeholder='Tell how was your stay, what you like and what can be improved' value={text}/>
       <div className='reviews__button-wrapper'>
         <p className='reviews__help'>
           To submit review please make sure to set <span className='reviews__star'>rating</span> and

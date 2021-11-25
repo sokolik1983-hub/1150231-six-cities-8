@@ -29,7 +29,6 @@ function RoomPageScreen(): JSX.Element {
           </symbol>
         </svg>
       </div>
-
       <div className='page'>
         <header className='header'>
           <div className='container'>
