@@ -15,13 +15,14 @@ const initialState: State = {
   },
   listCities: [],
   loadOffers: [],
+  isDataLoaded: false,
 };
 
 function reducer(state: State = initialState, action: Actions): State {
 
   switch(action.type) {
     case ActionType.ChooseCity: {
-      return {...initialState, city: action.payload.city};
+      return {...state, city: action.payload.city};
     }
     case ActionType.FilterOffersCity: {
       return {...state, currentOffers: action.payload.currentOffers};
@@ -33,10 +34,7 @@ function reducer(state: State = initialState, action: Actions): State {
       return {...state, listCities: action.payload.uniqArrCities};
     }
     case ActionType.LoadCurrentOffers: {
-      /* eslint-disable no-console */
-      console.log('loadOffers',action.payload);
-      /* eslint-enable no-console */
-      return {...state, loadOffers: camelcaseKeys(action.payload)};
+      return {...state, loadOffers: camelcaseKeys(action.payload), isDataLoaded: true};
     }
     // case ActionType.RequireAuthorization:
     //   return {

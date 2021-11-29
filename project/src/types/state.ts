@@ -10,4 +10,5 @@ export type State = {
   currentCityLocation: CityLocation | undefined,
   listCities: Cities[],
   loadOffers: Offers,
+  isDataLoaded?: boolean,
 }

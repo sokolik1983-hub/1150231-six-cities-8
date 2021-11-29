@@ -9,8 +9,7 @@ import {
   chooseCity,
   filterOffersCity,
   getCurrentCityLocation,
-  getListCities,
-  loadCurrentOffers
+  getListCities
 } from '../../store/action';
 import Map from '../Map/Map';
 import {Cities, Offer, Offers, Point} from '../../types/offer';
@@ -39,9 +38,6 @@ const mapDispatchToProps = (dispatch: Dispatch<Actions>) => ({
   onGetLocationCity(point?: Point) {
     dispatch(getCurrentCityLocation(point));
   },
-  onFetchOffer(loadOffers:Offers) {
-    dispatch(loadCurrentOffers(loadOffers));
-  },
 });
 
 const connector = connect(mapStateToProps, mapDispatchToProps);
@@ -49,22 +45,22 @@ const connector = connect(mapStateToProps, mapDispatchToProps);
 type PropsFromRedux = ConnectedProps<typeof connector>;
 
 function MainPageScreen(props: PropsFromRedux): JSX.Element {
-  /* eslint-disable no-console */
-  console.log('props',props);
-  /* eslint-enable no-console */
-  const {offers, onFilterCity, city, onClickCity, onGetLocationCity, onGetListCities, currentCityLocation, listCities, currentOffers, onFetchOffer, loadOffers} = props;
+  const {onFilterCity, city, onClickCity, onGetLocationCity, onGetListCities, currentCityLocation, listCities, currentOffers, loadOffers} = props;
   useEffect(() => {
-    const filterOffers: Offers = offers.filter((obj: Offer) => obj.city.name === city);
-    onFilterCity(filterOffers);
-  }, [city, offers, onFilterCity]);
+    if(loadOffers) {
+      const filterOffers: Offers = loadOffers.filter((obj: Offer) => obj.city.name === city);
+      onFilterCity(filterOffers);
+    }
+  }, [city, loadOffers, onFilterCity]);
   useEffect(() => {
-    onFetchOffer(loadOffers);
     const cityLocation = currentOffers.find((item: Offer) =>  item.city.name === city);
     onGetLocationCity(cityLocation?.city.location);
-    const newArrCities = offers.map((item: Offer) => (item.city.name));
-    const uniqArrCities = newArrCities.filter((value: string, index: number) => newArrCities.indexOf(value) === index );
-    onGetListCities(uniqArrCities);
-  }, [city, offers, currentOffers, onGetListCities, onGetLocationCity, onFilterCity]); //с getData не получилось, слишком много перерендеров, в таком написании - предупреждений нет
+    if(loadOffers) {
+      const newArrCities = loadOffers.map((item: Offer) => (item.city.name));
+      const uniqArrCities = newArrCities.filter((value: string, index: number) => newArrCities.indexOf(value) === index );
+      onGetListCities(uniqArrCities);
+    }
+  }, [city, loadOffers, currentOffers, onGetListCities, onGetLocationCity]);
 
   return (
     <>
@@ -120,7 +116,7 @@ function MainPageScreen(props: PropsFromRedux): JSX.Element {
               <div className='cities__right-section'>
                 <div className="cities__map">
                   {
-                    currentCityLocation && <Map currentCityLocation={currentCityLocation} offers={offers}/>
+                    currentCityLocation && <Map currentCityLocation={currentCityLocation} offers={loadOffers}/>
                   }
                 </div>
               </div>

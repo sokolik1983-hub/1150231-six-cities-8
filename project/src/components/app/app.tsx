@@ -1,8 +1,25 @@
 import {MainPageScreen, LoginPageScreen, PrivateRoute, FavoritesPageScreen, RoomPageScreen, NotFoundPageScreen} from 'components/config';
 import cards from 'fixtures/offers';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import {State} from '../../types/state';
+import {connect, ConnectedProps} from 'react-redux';
+import Loading from '../Loading/Loading';
 
-function App(): JSX.Element {
+const mapStateToProps = ({isDataLoaded}: State) => ({
+  isDataLoaded,
+});
+
+const connector = connect(mapStateToProps);
+
+type PropsFromRedux = ConnectedProps<typeof connector>;
+
+function App(props: PropsFromRedux): JSX.Element {
+  const {isDataLoaded} = props;
+  if(!isDataLoaded) {
+    return (
+      <Loading />
+    );
+  }
   return (
     <BrowserRouter>
       <Switch>
@@ -16,5 +33,5 @@ function App(): JSX.Element {
       </Switch>
     </BrowserRouter>);
 }
-
-export default App;
+export {App};
+export default connector(App);
